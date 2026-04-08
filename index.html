@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>KSH Smart Supervisor</title>
+  <title>IPD3 Manger - Smart Supervisor</title>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+  
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
     :root { --primary-color: #1e3c72; --secondary-color: #2a5298; --accent-color: #6f42c1; --bg-light: #f4f6f9; }
@@ -21,9 +24,12 @@
     .btn-database { background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4); color: white; border-radius: 20px; padding: 6px 15px; font-size: 0.85rem; backdrop-filter: blur(5px); transition: all 0.2s; }
     .btn-database:hover { background: white; color: var(--primary-color); }
     .container-main { max-width: 1000px; margin: -25px auto 20px auto; padding: 0 10px; position: relative; z-index: 10; }
+    
+    /* Nav Pills Menu */
     .nav-pills { background: white; border-radius: 15px; padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
     .nav-pills .nav-link { color: #555; font-weight: 600; border-radius: 12px; padding: 12px; font-size: 0.95rem; transition: all 0.3s; cursor: pointer; border: none; width: 100%;}
     .nav-pills .nav-link.active { background: var(--primary-color); color: white; box-shadow: 0 4px 10px rgba(30, 60, 114, 0.2); }
+    
     .custom-card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); background: white; margin-bottom: 20px; overflow: hidden; }
     .card-title-bar { background: #fff; padding: 12px 18px; font-weight: 600; font-size: 1.05rem; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; color: var(--primary-color); }
     .card-title-bar i { margin-right: 10px; font-size: 1.2rem; opacity: 0.8; }
@@ -31,18 +37,22 @@
     .form-label { font-weight: 600; font-size: 0.85rem; color: #555; margin-bottom: 6px; }
     .form-control, .form-select { border-radius: 10px; border: 1px solid #ddd; padding: 10px 12px; font-size: 16px; background-color: #fafafa; }
     .form-control:focus, .form-select:focus { border-color: var(--accent-color); background-color: #fff; box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.1); }
+    
     .signature-wrapper { border: 2px dashed #ced4da; border-radius: 10px; background-color: #fff; position: relative; overflow: hidden; }
     #signaturePad { width: 100%; height: 200px; touch-action: none; cursor: crosshair; }
     .btn-clear-sig { position: absolute; top: 10px; right: 10px; z-index: 10; border-radius: 20px; font-size: 0.8rem; }
+    
     .select2-container--bootstrap-5 .select2-selection { font-size: 16px !important; border-radius: 10px; border-color: #ddd; background-color: #fafafa; min-height: 42px; display: flex; align-items: center; }
     .stats-container { background: #f8f9fa; border: 1px solid #ececec; border-radius: 12px; padding: 12px; margin-top: 15px; }
     .stat-title { font-size: 0.85rem; font-weight: bold; color: #666; margin-bottom: 8px; display: block; }
     .btn-gradient { background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; border: none; padding: 14px; font-weight: 600; font-size: 1.1rem; border-radius: 12px; box-shadow: 0 6px 15px rgba(111, 66, 193, 0.25); transition: transform 0.2s; width: 100%;}
     .btn-gradient:hover { transform: translateY(-2px); color: white; }
     #loadingOverlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.9); z-index:9999; flex-direction:column; justify-content:center; align-items:center; backdrop-filter: blur(4px); }
-    @media (min-width: 768px) { .card-body-custom { padding: 25px; } .app-header { padding: 40px 0 60px 0; border-radius: 0; } }
+    
     table.dataTable tbody td { vertical-align: middle; font-size: 0.9rem; }
     .table-responsive { border-radius: 10px; }
+    
+    /* Snapshot Area */
     #captureArea { position: absolute; left: -9999px; top: 0; width: 800px; background: white; padding: 40px; font-family: 'Sarabun'; color: #333; line-height: 1.6; }
     .snap-header { text-align: center; border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; margin-bottom: 25px; }
     .snap-header h2 { color: var(--primary-color); font-weight: bold; margin: 0; }
@@ -53,6 +63,24 @@
     .snap-label { font-weight: 600; width: 180px; color: #555; }
     .snap-value { flex: 1; font-weight: 500; }
     .snap-block { background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
+
+    /* Dashboard CSS */
+    .dash-card { border-radius: 15px; padding: 20px; color: white; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); height: 100%; display: flex; flex-direction: column; justify-content: center; min-height: 130px;}
+    .dash-card .bg-icon { position: absolute; right: -10px; bottom: -20px; font-size: 6rem; opacity: 0.2; }
+    .dash-card .title { font-size: 1rem; font-weight: 600; margin-bottom: 5px; z-index: 1; position: relative; display: flex; align-items: center; gap: 8px;}
+    .dash-card .value { font-size: 2.8rem; font-weight: 700; line-height: 1; z-index: 1; position: relative; margin-top: 5px;}
+    .dash-card .unit { font-size: 1.2rem; font-weight: 500; }
+    
+    .bg-blue-light { background: #f0f4f8; color: #1e3c72; border: 1px solid #d9e2ec; }
+    .bg-blue-light .bg-icon { color: #1e3c72; opacity: 0.05; }
+    .bg-orange { background: linear-gradient(135deg, #ff9966, #ff5e62); }
+    .bg-purple { background: linear-gradient(135deg, #7F00FF, #E100FF); }
+    .bg-green { background: linear-gradient(135deg, #11998e, #38ef7d); }
+
+    .filter-box { background: white; border-radius: 15px; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); margin-bottom: 20px; border: 1px solid #f0f0f0; }
+    #chartWrapper { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+
+    @media (min-width: 768px) { .card-body-custom { padding: 25px; } .app-header { padding: 40px 0 60px 0; border-radius: 0; } }
   </style>
 </head>
 <body>
@@ -77,7 +105,7 @@
 </div>
 
 <div class="app-header text-center">
-  <h2 class="mb-2"><i class="fas fa-hospital-symbol"></i> KSH Supervisor System</h2>
+  <h2 class="mb-2"><i class="fas fa-hospital-symbol"></i> IPD3 Manger</h2>
   <p class="mb-3 opacity-75">ระบบบันทึกและรายงานประจำเวรพยาบาลตรวจการนอกเวลา</p>
   <button class="btn btn-database" onclick="openDatabase()"><i class="fas fa-database me-1"></i> Google Sheet Database</button>
 </div>
@@ -87,6 +115,7 @@
   <ul class="nav nav-pills nav-fill mb-3 d-flex flex-row">
     <li class="nav-item flex-fill"><button class="nav-link active" onclick="showTable()" id="btnTabTable"><i class="fas fa-list-ul me-1"></i> ประวัติการบันทึก</button></li>
     <li class="nav-item flex-fill"><button class="nav-link" onclick="showForm()" id="btnTabForm"><i class="fas fa-plus-circle me-1"></i> บันทึกเวรใหม่</button></li>
+    <li class="nav-item flex-fill"><button class="nav-link" onclick="showDashboard()" id="btnTabDash"><i class="fas fa-chart-pie me-1"></i> แดชบอร์ด</button></li>
   </ul>
 
   <div id="tableSection">
@@ -257,6 +286,88 @@
       </div>
     </form>
   </div>
+  
+  <div id="dashboardSection" style="display:none;">
+    <div id="pdfDashboardArea">
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="dash-card bg-blue-light">
+            <i class="fas fa-calendar-alt bg-icon"></i>
+            <div class="title"><i class="fas fa-circle text-primary" style="font-size:0.6rem;"></i> วันที่ปัจจุบัน</div>
+            <div class="value" id="dash_date" style="font-size: 1.5rem; margin-top: 15px;">-</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="dash-card bg-orange">
+            <i class="fas fa-ambulance bg-icon"></i>
+            <div class="title"><i class="fas fa-exclamation-triangle"></i> Refer รวม (ล่าสุด)</div>
+            <div class="value"><span id="dash_refer">0</span> <span class="unit">ราย</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="dash-card bg-green">
+            <i class="fas fa-bed bg-icon"></i>
+            <div class="title"><i class="fas fa-venus-mars"></i> IPD รวม (ล่าสุด)</div>
+            <div class="value"><span id="dash_ipd">0</span> <span class="unit">ราย</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="dash-card bg-purple">
+            <i class="fas fa-user-injured bg-icon"></i>
+            <div class="title"><i class="fas fa-procedures"></i> ผู้ป่วย ER (ล่าสุด)</div>
+            <div class="value"><span id="dash_er">0</span> <span class="unit">ราย</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-box" data-html2canvas-ignore="true">
+        <div class="row g-3 align-items-end">
+          <div class="col-12 col-md-3">
+            <label class="form-label">ตั้งแต่วันที่</label>
+            <input type="date" class="form-control" id="filterStartDate" onchange="renderChart()">
+          </div>
+          <div class="col-12 col-md-3">
+            <label class="form-label">ถึงวันที่</label>
+            <input type="date" class="form-control" id="filterEndDate" onchange="renderChart()">
+          </div>
+          <div class="col-12 col-md-3">
+            <label class="form-label">ข้อมูลที่ต้องการวิเคราะห์</label>
+            <select class="form-select" id="filterDataSelect" onchange="renderChart()">
+              <option value="er_total">ยอดรวมผู้ป่วย ER</option>
+              <option value="refer_total">ยอดส่งต่อ (Refer) รวม</option>
+              <option value="ipd_total">ยอดผู้ป่วย IPD คงเหลือรวม</option>
+              <option value="supervisor_count">ความถี่การขึ้นเวรผู้ตรวจการ</option>
+              <option value="doc_er_count">ความถี่การขึ้นเวรแพทย์ ER</option>
+              <option value="problem_count">สถิติปัญหาที่พบ</option>
+            </select>
+          </div>
+          <div class="col-6 col-md-2">
+            <label class="form-label">รูปแบบ</label>
+            <select class="form-select" id="filterChartType" onchange="renderChart()">
+              <option value="bar">แท่ง (Bar)</option>
+              <option value="line">เส้น (Line)</option>
+              <option value="pie">วงกลม (Pie)</option>
+              <option value="table">ตาราง (Table)</option>
+            </select>
+          </div>
+          <div class="col-6 col-md-1 d-grid">
+            <button class="btn btn-danger h-100" onclick="exportDashboardPDF()" title="ดาวน์โหลดเป็น PDF"><i class="fas fa-file-pdf"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div id="chartWrapper">
+        <canvas id="mainDashboardChart" style="max-height: 400px;"></canvas>
+        <div id="dashboardTableArea" style="display: none;" class="table-responsive">
+          <table class="table table-bordered table-striped" id="dashTable">
+            <thead class="table-light"><tr><th id="thLabel">รายการ</th><th id="thValue" class="text-end">จำนวน</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -273,13 +384,13 @@
   const API_URL = "https://script.google.com/macros/s/AKfycbwQnWbbfA9BqalAJMBlBI8HSbAiMeMXEjLzowtRsHPemAabX1OQbX7T_6I00j-CQ7OU/exec"; 
 
   var allData = [];
+  var dashboardChart = null; // ตัวแปรสำหรับเก็บออบเจกต์ Chart.js
 
   $(document).ready(function() { 
     loadTableData(); 
     fetchDropdowns(); 
   });
 
-  // ใช้ fetch() แทน google.script.run
   async function fetchDropdowns() {
     try {
       let response = await fetch(API_URL + "?action=getDropdownOptions");
@@ -302,8 +413,19 @@
     }
   }
 
-  function showTable() { $('#formSection').hide(); $('#tableSection').fadeIn(200); $('#btnTabTable').addClass('active'); $('#btnTabForm').removeClass('active'); loadTableData(); window.scrollTo(0,0); }
-  function showForm() { $('#tableSection').hide(); $('#formSection').fadeIn(200, function() { resizeCanvas(); }); $('#btnTabForm').addClass('active'); $('#btnTabTable').removeClass('active'); initSelect2(); window.scrollTo(0,0); }
+  // ระบบแสดงผลแต่ละหน้า
+  function showTable() { $('#formSection, #dashboardSection').hide(); $('#tableSection').fadeIn(200); $('#btnTabTable').addClass('active'); $('#btnTabForm, #btnTabDash').removeClass('active'); loadTableData(); window.scrollTo(0,0); }
+  function showForm() { $('#tableSection, #dashboardSection').hide(); $('#formSection').fadeIn(200, function() { resizeCanvas(); }); $('#btnTabForm').addClass('active'); $('#btnTabTable, #btnTabDash').removeClass('active'); initSelect2(); window.scrollTo(0,0); }
+  function showDashboard() { 
+    $('#formSection, #tableSection').hide(); 
+    $('#dashboardSection').fadeIn(200); 
+    $('#btnTabDash').addClass('active'); 
+    $('#btnTabTable, #btnTabForm').removeClass('active'); 
+    updateDashboardCards();
+    renderChart();
+    window.scrollTo(0,0); 
+  }
+
   function initSelect2() { $('.select2-input').select2({ theme: 'bootstrap-5', width: '100%', placeholder: 'เลือก...', allowClear: true, dropdownAutoWidth: true }); }
   function resetForm() { document.getElementById('mainForm').reset(); $('#recId').val(''); $('.select2-input').val(null).trigger('change'); clearSignature(); }
 
@@ -314,11 +436,11 @@
     
     var form = document.getElementById('mainForm'); 
     var fd = {}; 
-    new FormData(form).forEach((v, k) => fd[k] = v); // แปลง Form เป็น Object
+    new FormData(form).forEach((v, k) => fd[k] = v); 
     
     const j = (arr) => arr.filter(v => v).join(', ');
 
-    // Map ข้อมูลลงรูปภาพ
+    // Map ข้อมูลลงรูปภาพสำหรับ Receipt
     $('#c_date').text(fd.ReportDate); $('#c_time').text(`${fd.StartTime} - ${fd.EndTime}`);
     $('#c_sup').text(fd.SupervisorName); $('#c_pos').text(fd.Position);
     $('#c_docER').text(fd.DoctorER||'-'); $('#c_docWard').text(fd.DoctorWard||'-');
@@ -359,16 +481,13 @@
       imageBase64 = capCanvas.toDataURL("image/png"); 
     } catch(err) {}
 
-    // ยิง API แบบ POST ไปหา Google Script
     try {
       let payload = { action: 'processForm', formObject: fd, imageBase64: imageBase64 };
-      
       let response = await fetch(API_URL, {
         method: 'POST',
         body: JSON.stringify(payload),
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' } // หลบเรื่อง CORS ของ Google Script
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
       });
-      
       let result = await response.json();
       $('#loadingOverlay').fadeOut();
       
@@ -384,7 +503,7 @@
     }
   }
 
-  // Load Table via API
+  // Load Table
   async function loadTableData() {
     try {
       let response = await fetch(API_URL + "?action=getAllRecords");
@@ -403,6 +522,10 @@
         tbody.append(`<tr><td class="fw-bold text-nowrap">${r.dateFormatted}</td><td>${r.supervisor}</td><td class="text-center">${pdfBtn}${imgBtn}</td><td class="text-end text-nowrap">${editBtn}${delBtn}</td></tr>`);
       });
       $('#dataTable').DataTable({ "order": [], "language": { "search": "ค้นหา:", "lengthMenu":"แสดง _MENU_ รายการ", "info":"แสดง _START_ ถึง _END_ จาก _TOTAL_ รายการ", "paginate": { "next": "ถัดไป", "previous": "ก่อนหน้า" } }, "responsive": true });
+      
+      // สั่งอัปเดต Dashboard เมื่อโหลดข้อมูลเสร็จ
+      updateDashboardCards();
+      renderChart();
     } catch (e) {
       console.error("Error loading table", e);
     }
@@ -427,7 +550,7 @@
     }); 
   }
 
-  // Edit (Map Data) - เหมือนเดิม
+  // Edit (Map Data)
   function editRecord(id) {
     var record = allData.find(r => r.id == id); if (!record) return;
     resetForm(); 
@@ -458,7 +581,164 @@
   function setRadio(n, v) { if(v) $(`input[name="${n}"][value="${v}"]`).prop('checked', true); }
   function formatDate(d) { if(!d) return ''; var dt=new Date(d); return dt.getFullYear()+'-'+('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2); }
 
-  // Signature
+  // -----------------------------------------------------
+  // ฟังก์ชันส่วนของ Dashboard (การ์ด & กราฟ & โหลดไฟล์)
+  // -----------------------------------------------------
+  function updateDashboardCards() {
+    if(!allData || allData.length === 0) return;
+
+    // หาเรคคอร์ดล่าสุดโดยเรียงตามวันที่ (อ้างอิง Index 2 จาก Google Sheet)
+    let sortedData = [...allData].sort((a, b) => new Date(b.fullData[2]) - new Date(a.fullData[2]));
+    let latest = sortedData[0].fullData;
+
+    // 1. วันที่ปัจจุบัน
+    let today = new Date();
+    $('#dash_date').text(today.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' }));
+
+    // 2. Refer รวมล่าสุด (Index 63)
+    $('#dash_refer').text(latest[63] || '0');
+
+    // 3. IPD รวมล่าสุด (IPD หญิง คงเหลือ Index 43 + IPD ชาย คงเหลือ Index 57)
+    let ipdTotal = (Number(latest[43]) || 0) + (Number(latest[57]) || 0);
+    $('#dash_ipd').text(ipdTotal);
+
+    // 4. ER ล่าสุด (Index 15)
+    $('#dash_er').text(latest[15] || '0');
+  }
+
+  function renderChart() {
+    if(!allData || allData.length === 0) return;
+
+    let startDate = $('#filterStartDate').val();
+    let endDate = $('#filterEndDate').val();
+    let dataType = $('#filterDataSelect').val();
+    let chartType = $('#filterChartType').val();
+
+    // กรองข้อมูลตามช่วงเวลา
+    let filteredData = allData.filter(r => {
+      let rDate = new Date(r.fullData[2]);
+      rDate.setHours(0,0,0,0);
+      let isAfterStart = startDate ? rDate >= new Date(startDate) : true;
+      let isBeforeEnd = endDate ? rDate <= new Date(endDate) : true;
+      return isAfterStart && isBeforeEnd;
+    });
+
+    let labels = [];
+    let dataPoints = [];
+    let title = $("#filterDataSelect option:selected").text();
+
+    if(dataType === 'er_total' || dataType === 'refer_total' || dataType === 'ipd_total') {
+      // ข้อมูลแนวโน้ม Time Series เรียงจากเก่าไปใหม่
+      filteredData.sort((a, b) => new Date(a.fullData[2]) - new Date(b.fullData[2]));
+      
+      filteredData.forEach(r => {
+        labels.push(r.dateFormatted);
+        let val = 0;
+        if(dataType === 'er_total') val = Number(r.fullData[15]) || 0; // ER
+        if(dataType === 'refer_total') val = Number(r.fullData[63]) || 0; // Refer
+        if(dataType === 'ipd_total') val = (Number(r.fullData[43]) || 0) + (Number(r.fullData[57]) || 0); // IPD2 + IPD3
+        dataPoints.push(val);
+      });
+    } else {
+      // ข้อมูลการนับความถี่ (นับชื่อคน หรือ นับปัญหา)
+      let counts = {};
+      filteredData.forEach(r => {
+        let items = [];
+        if(dataType === 'supervisor_count') items.push(r.fullData[5]); // ผู้ตรวจการ
+        if(dataType === 'doc_er_count') items.push(r.fullData[7]); // แพทย์ ER
+        if(dataType === 'problem_count') {
+          for(let i=1; i<=9; i++) { 
+            if(r.fullData[75+i] === "พบ") items.push("ข้อ " + i); // ปัญหาข้อ 1-9
+          }
+        }
+        
+        items.forEach(item => {
+          if(item && item.trim() !== '') {
+            counts[item] = (counts[item] || 0) + 1;
+          }
+        });
+      });
+
+      // จัดเรียงลำดับจากมากไปน้อย
+      let sortedCounts = Object.keys(counts).map(k => ({name: k, count: counts[k]})).sort((a,b) => b.count - a.count);
+      sortedCounts.forEach(c => {
+        labels.push(c.name);
+        dataPoints.push(c.count);
+      });
+    }
+
+    // แสดงเป็นตาราง
+    if(chartType === 'table') {
+      $('#mainDashboardChart').hide();
+      $('#dashboardTableArea').show();
+      let tbody = $('#dashTable tbody');
+      tbody.empty();
+      
+      $('#thLabel').text(dataType.includes('count') ? 'รายชื่อ/รายการ' : 'วันที่');
+      
+      if(labels.length === 0) {
+        tbody.append('<tr><td colspan="2" class="text-center">ไม่มีข้อมูลในช่วงเวลาที่เลือก</td></tr>');
+      } else {
+        for(let i=0; i<labels.length; i++) {
+          tbody.append(`<tr><td>${labels[i]}</td><td class="text-end fw-bold text-primary">${dataPoints[i]}</td></tr>`);
+        }
+      }
+      return;
+    }
+
+    // แสดงเป็นกราฟ
+    $('#dashboardTableArea').hide();
+    $('#mainDashboardChart').show();
+
+    if (dashboardChart) { dashboardChart.destroy(); } // เคลียร์กราฟเก่า
+
+    let ctx = document.getElementById('mainDashboardChart').getContext('2d');
+    let bgColor = chartType === 'pie' ? 
+      ['#1e3c72', '#ff9966', '#7F00FF', '#11998e', '#f1c40f', '#e74c3c', '#3498db'] : 
+      'rgba(111, 66, 193, 0.5)';
+    let borderColor = chartType === 'pie' ? '#fff' : '#6f42c1';
+
+    dashboardChart = new Chart(ctx, {
+      type: chartType,
+      data: {
+        labels: labels,
+        datasets: [{
+          label: title,
+          data: dataPoints,
+          backgroundColor: bgColor,
+          borderColor: borderColor,
+          borderWidth: 1,
+          fill: chartType === 'line'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: chartType === 'pie' || chartType === 'line' } },
+        scales: chartType === 'pie' ? {} : { y: { beginAtZero: true, ticks: { precision: 0 } } }
+      }
+    });
+  }
+
+  function exportDashboardPDF() {
+    var element = document.getElementById('pdfDashboardArea');
+    var opt = {
+      margin:       0.5,
+      filename:     'Dashboard_IPD3_Manger_' + $('#dash_date').text() + '.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' }
+    };
+
+    $('#loadingOverlay').css('display', 'flex');
+    html2pdf().set(opt).from(element).save().then(() => {
+      $('#loadingOverlay').fadeOut();
+    });
+  }
+
+  // -----------------------------------------------------
+  // Signature Area
+  // -----------------------------------------------------
   var canvas = document.getElementById('signaturePad'), ctx = canvas.getContext('2d'), drawing = false;
   function resizeCanvas() { var ratio = Math.max(window.devicePixelRatio || 1, 1); canvas.width = canvas.offsetWidth * ratio; canvas.height = canvas.offsetHeight * ratio; ctx.scale(ratio, ratio); ctx.lineWidth = 2.5; ctx.strokeStyle = "#000080"; ctx.lineCap = "round"; }
   window.addEventListener("resize", resizeCanvas);
