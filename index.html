@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>IPD3 Manger - Smart Supervisor</title>
+  <title>KSH SUPERVISOR SYSTEM</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%231e3c72' d='M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm95.8 32.6L272 480l-32-136 32-56h-96l32 56-32 136-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8z'/%3E%3C/svg%3E">
+
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -102,7 +105,7 @@
 </div>
 
 <div class="app-header text-center">
-  <h2 class="mb-2"><i class="fas fa-user-shield"></i> IPD3 Manger</h2>
+  <h2 class="mb-2"><i class="fas fa-user-shield"></i> KSH SUPERVISOR SYSTEM</h2>
   <p class="mb-3 opacity-75">ระบบบันทึกและรายงานประจำเวรพยาบาลตรวจการนอกเวลา</p>
   <button class="btn btn-database" onclick="openDatabase()"><i class="fas fa-database me-1"></i> Google Sheet Database</button>
 </div>
@@ -385,7 +388,6 @@
   $(document).ready(function() { 
     loadTableData(); 
     fetchDropdowns(); 
-    // โหลด Select2 สำหรับตัวกรอง Dashboard
     $('#filterDataSelect').select2({ theme: 'bootstrap-5', width: '100%', placeholder: 'พิมพ์ค้นหาหรือเลือกข้อมูล...' });
   });
 
