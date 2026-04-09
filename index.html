@@ -35,44 +35,26 @@
     
     /* Navigation Menu (Mobile Bottom App Bar) */
     @media (max-width: 767px) {
-      body { padding-bottom: 85px; } /* ป้องกันเนื้อหาโดนเมนูบังด้านล่าง */
+      body { padding-bottom: 85px; } 
       .nav-pills { 
-        position: fixed; 
-        bottom: 0; 
-        left: 0; 
-        right: 0; 
-        border-radius: 20px 20px 0 0 !important; 
-        margin-bottom: 0 !important; 
-        padding: 8px 5px 12px 5px !important; /* เว้นระยะขอบล่างเผื่อจอ iPhone */
-        box-shadow: 0 -4px 20px rgba(0,0,0,0.1) !important; 
-        z-index: 1030; 
-        background: white; 
-        display: flex;
-        justify-content: space-between;
+        position: fixed; bottom: 0; left: 0; right: 0; 
+        border-radius: 20px 20px 0 0 !important; margin-bottom: 0 !important; 
+        padding: 8px 5px 12px 5px !important; box-shadow: 0 -4px 20px rgba(0,0,0,0.1) !important; 
+        z-index: 1030; background: white; display: flex; justify-content: space-between;
       }
       .nav-pills .nav-item { margin: 0 2px; }
       .nav-pills .nav-link { 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        justify-content: center; 
-        font-size: 0.7rem !important; 
-        padding: 8px 2px !important; 
-        color: #6c757d; 
-        background: transparent !important; 
+        display: flex; flex-direction: column; align-items: center; justify-content: center; 
+        font-size: 0.7rem !important; padding: 8px 2px !important; color: #6c757d; background: transparent !important; 
       }
-      .nav-pills .nav-link i { 
-        font-size: 1.4rem; 
-        margin-right: 0 !important; 
-        margin-bottom: 4px; 
-      }
-      .nav-pills .nav-link.active { 
-        background: #eef2ff !important; 
-        color: var(--primary-color) !important; 
-        box-shadow: none !important; 
-        font-weight: 700;
-      }
+      .nav-pills .nav-link i { font-size: 1.4rem; margin-right: 0 !important; margin-bottom: 4px; }
+      .nav-pills .nav-link.active { background: #eef2ff !important; color: var(--primary-color) !important; box-shadow: none !important; font-weight: 700; }
     }
+
+    /* Quick Launch Menu in Home */
+    .quick-menu-btn { background: white; border-radius: 15px; padding: 15px 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; width: 100%; transition: all 0.2s; color: #555; font-weight: 600;}
+    .quick-menu-btn:hover, .quick-menu-btn:active { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); background: #fafafa;}
+    .quick-menu-btn i { font-size: 2rem; margin-bottom: 8px; display: block;}
 
     .custom-card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); background: white; margin-bottom: 20px; overflow: hidden; }
     .card-title-bar { background: #fff; padding: 12px 18px; font-weight: 600; font-size: 1.05rem; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; color: var(--primary-color); }
@@ -205,25 +187,36 @@
 <div class="container-main">
 
   <ul class="nav nav-pills nav-fill mb-3 d-flex flex-row print-hide" id="mainNav">
-    <li class="nav-item flex-fill"><button class="nav-link active" onclick="showTable()" id="btnTabTable"><i class="fas fa-list-ul"></i> ประวัติ</button></li>
-    <li class="nav-item flex-fill"><button class="nav-link" onclick="showDashboard()" id="btnTabDash"><i class="fas fa-chart-pie"></i> แดชบอร์ด</button></li>
-    <li class="nav-item flex-fill"><button class="nav-link" onclick="showHandout()" id="btnTabHandout"><i class="fas fa-book-medical"></i> คู่มือ</button></li>
+    <li class="nav-item flex-fill"><button class="nav-link active" onclick="showDashboard()" id="btnTabDash"><i class="fas fa-home"></i> Home</button></li>
     <li class="nav-item flex-fill"><button class="nav-link" onclick="showForm()" id="btnTabForm"><i class="fas fa-plus-circle"></i> บันทึกเวร</button></li>
+    <li class="nav-item flex-fill"><button class="nav-link" onclick="showTable()" id="btnTabTable"><i class="fas fa-list-ul"></i> ประวัติ</button></li>
+    <li class="nav-item flex-fill"><button class="nav-link" onclick="showHandout()" id="btnTabHandout"><i class="fas fa-book-medical"></i> คู่มือ</button></li>
   </ul>
 
-  <div id="tableSection">
-    <div class="custom-card card-body-custom">
-      <div class="table-responsive">
-        <table id="dataTable" class="table table-hover align-middle w-100">
-          <thead class="table-light"><tr><th style="min-width:90px;">วันที่</th><th>ผู้ตรวจการ</th><th class="text-center" style="min-width:120px;">ไฟล์</th><th class="text-end" style="min-width:90px;">จัดการ</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div id="dashboardSection" style="display:none;">
+  <div id="dashboardSection">
     <div id="pdfDashboardArea">
+      
+      <div class="row g-3 mb-4 print-hide">
+        <div class="col-4">
+          <button class="quick-menu-btn text-center" onclick="showForm()">
+            <i class="fas fa-plus-circle" style="color: #6f42c1;"></i>
+            <span class="d-block" style="font-size: 0.85rem;">บันทึกเวร</span>
+          </button>
+        </div>
+        <div class="col-4">
+          <button class="quick-menu-btn text-center" onclick="showTable()">
+            <i class="fas fa-list-ul" style="color: #1e3c72;"></i>
+            <span class="d-block" style="font-size: 0.85rem;">ประวัติ</span>
+          </button>
+        </div>
+        <div class="col-4">
+          <button class="quick-menu-btn text-center" onclick="showHandout()">
+            <i class="fas fa-book-medical" style="color: #10b981;"></i>
+            <span class="d-block" style="font-size: 0.85rem;">คู่มือ</span>
+          </button>
+        </div>
+      </div>
+
       <div class="row g-3 mb-4">
         <div class="col-6 col-md-3">
           <div class="dash-card bg-blue-light">
@@ -300,6 +293,17 @@
             <tbody></tbody>
           </table>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tableSection" style="display:none;">
+    <div class="custom-card card-body-custom">
+      <div class="table-responsive">
+        <table id="dataTable" class="table table-hover align-middle w-100">
+          <thead class="table-light"><tr><th style="min-width:90px;">วันที่</th><th>ผู้ตรวจการ</th><th class="text-center" style="min-width:120px;">ไฟล์</th><th class="text-end" style="min-width:90px;">จัดการ</th></tr></thead>
+          <tbody></tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -858,6 +862,8 @@
   var dashboardChart = null;
 
   $(document).ready(function() { 
+    // โหลดหน้า Dashboard เป็นหน้าแรกสุด (Home)
+    showDashboard(); 
     loadTableData(); 
     fetchDropdowns(); 
     $('#filterDataSelect').select2({ theme: 'bootstrap-5', width: '100%', placeholder: 'พิมพ์ค้นหาหรือเลือกข้อมูล...' });
@@ -887,14 +893,6 @@
     $('.nav-link').removeClass('active');
   }
 
-  function showTable() { 
-    hideAllSections(); 
-    $('#tableSection').fadeIn(200); 
-    $('#btnTabTable').addClass('active'); 
-    loadTableData(); 
-    window.scrollTo(0,0); 
-  }
-  
   function showDashboard() { 
     hideAllSections(); 
     $('#dashboardSection').fadeIn(200); 
@@ -904,18 +902,26 @@
     window.scrollTo(0,0); 
   }
 
-  function showHandout() { 
-    hideAllSections(); 
-    $('#handoutSection').fadeIn(200); 
-    $('#btnTabHandout').addClass('active'); 
-    window.scrollTo(0,0); 
-  }
-
   function showForm() { 
     hideAllSections(); 
     $('#formSection').fadeIn(200, function() { resizeCanvas(); }); 
     $('#btnTabForm').addClass('active'); 
     initSelect2(); 
+    window.scrollTo(0,0); 
+  }
+
+  function showTable() { 
+    hideAllSections(); 
+    $('#tableSection').fadeIn(200); 
+    $('#btnTabTable').addClass('active'); 
+    loadTableData(); 
+    window.scrollTo(0,0); 
+  }
+
+  function showHandout() { 
+    hideAllSections(); 
+    $('#handoutSection').fadeIn(200); 
+    $('#btnTabHandout').addClass('active'); 
     window.scrollTo(0,0); 
   }
 
