@@ -39,17 +39,23 @@
       .nav-pills { 
         position: fixed; bottom: 0; left: 0; right: 0; 
         border-radius: 20px 20px 0 0 !important; margin-bottom: 0 !important; 
-        padding: 8px 5px 12px 5px !important; box-shadow: 0 -4px 20px rgba(0,0,0,0.1) !important; 
+        padding: 8px 2px 12px 2px !important; box-shadow: 0 -4px 20px rgba(0,0,0,0.1) !important; 
         z-index: 1030; background: white; display: flex; justify-content: space-between;
       }
-      .nav-pills .nav-item { margin: 0 2px; }
+      .nav-pills .nav-item { margin: 0 1px; }
       .nav-pills .nav-link { 
         display: flex; flex-direction: column; align-items: center; justify-content: center; 
-        font-size: 0.7rem !important; padding: 8px 2px !important; color: #6c757d; background: transparent !important; 
+        font-size: 0.65rem !important; padding: 6px 0 !important; color: #6c757d; background: transparent !important; 
       }
-      .nav-pills .nav-link i { font-size: 1.4rem; margin-right: 0 !important; margin-bottom: 4px; }
+      .nav-pills .nav-link i { font-size: 1.3rem; margin-right: 0 !important; margin-bottom: 4px; }
       .nav-pills .nav-link.active { background: #eef2ff !important; color: var(--primary-color) !important; box-shadow: none !important; font-weight: 700; }
     }
+
+    /* Quick Launch Menu in Home */
+    .quick-menu-btn { background: white; border-radius: 15px; padding: 15px 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; width: 100%; transition: all 0.2s; color: #555; font-weight: 600;}
+    .quick-menu-btn:hover, .quick-menu-btn:active { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); background: #fafafa;}
+    .quick-menu-btn i { font-size: 1.8rem; margin-bottom: 8px; display: block;}
+    @media (max-width: 767px) { .quick-menu-btn { padding: 10px 2px; } .quick-menu-btn i { font-size: 1.5rem; } }
 
     .custom-card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); background: white; margin-bottom: 20px; overflow: hidden; }
     .card-title-bar { background: #fff; padding: 12px 18px; font-weight: 600; font-size: 1.05rem; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; color: var(--primary-color); }
@@ -103,7 +109,6 @@
     .ho-bg { background-color: var(--bg-light); font-family: 'Sarabun', sans-serif; }
     .ho-header { background: linear-gradient(to right, #1e40af, #0f766e); color: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;}
     .ho-card { background: white; border-radius: 1rem; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; height: 100%; transition: box-shadow 0.3s; position: relative;}
-    .ho-card:hover { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); }
     .ho-card-header { padding: 1rem; display: flex; align-items: center; gap: 0.75rem; }
     .ho-icon-box { background: white; padding: 0.5rem; border-radius: 0.75rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); display: flex; justify-content: center; align-items: center; width: 3rem; height: 3rem; font-size: 1.5rem;}
     .ho-module-badge { font-size: 0.75rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -130,7 +135,6 @@
 
     .ho-step-badge { position: absolute; top: 0; right: 0; color: white; padding: 0.25rem 0.75rem; border-bottom-left-radius: 0.75rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
     .bg-indigo { background-color: #6366f1; } .bg-cyan { background-color: #06b6d4; } .bg-emerald { background-color: #10b981; } .bg-rose { background-color: #f43f5e; } .bg-fuchsia { background-color: #d946ef; }
-    
     .ho-mini-badge { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 0.375rem; font-size: 0.7rem; font-weight: 700; box-shadow: 0 1px 2px rgba(0,0,0,0.05); margin-bottom: 0.2rem; margin-right: 0.2rem;}
     .badge-rose { background-color: #ffe4e6; color: #be123c; } .badge-indigo { background-color: #e0e7ff; color: #4338ca; }
 
@@ -138,13 +142,11 @@
     @media print {
       body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background-color: white !important;}
       .print-hide { display: none !important; }
-      .app-header, .nav-pills, .filter-box, #dashboardSection, #formSection, #tableSection { display: none !important; }
+      .app-header, .nav-pills, .filter-box, #dashboardSection, #formSection, #tableSection, #eventSection { display: none !important; }
       #handoutSection { display: block !important; width: 100%; margin: 0; padding: 0; }
       .container-main { max-width: 100%; margin: 0; padding: 0;}
       .ho-header { box-shadow: none; border-radius: 0; padding: 1rem; color: black; background: white !important; border-bottom: 2px solid #1e40af;}
-      .ho-header h1 { color: #1e40af; }
-      .ho-header p { color: #4b5563; }
-      .ho-header i { color: #1e40af; }
+      .ho-header h1 { color: #1e40af; } .ho-header p { color: #4b5563; } .ho-header i { color: #1e40af; }
       .print-page-break { page-break-before: always; }
       .ho-card { break-inside: avoid; margin-bottom: 15px;}
     }
@@ -182,14 +184,42 @@
 <div class="container-main">
 
   <ul class="nav nav-pills nav-fill mb-3 d-flex flex-row print-hide" id="mainNav">
-    <li class="nav-item flex-fill"><button class="nav-link active" onclick="showDashboard()" id="btnTabDash"><i class="fas fa-home"></i> Home</button></li>
+    <li class="nav-item flex-fill"><button class="nav-link active" onclick="showDashboard()" id="btnTabDash"><i class="fas fa-home"></i><span class="d-md-inline d-none"> Home</span></button></li>
     <li class="nav-item flex-fill"><button class="nav-link" onclick="showForm()" id="btnTabForm"><i class="fas fa-plus-circle"></i> บันทึกเวร</button></li>
+    <li class="nav-item flex-fill"><button class="nav-link" onclick="showEvent()" id="btnTabEvent"><i class="fas fa-clipboard-list"></i> เหตุการณ์</button></li>
     <li class="nav-item flex-fill"><button class="nav-link" onclick="showTable()" id="btnTabTable"><i class="fas fa-list-ul"></i> ประวัติ</button></li>
     <li class="nav-item flex-fill"><button class="nav-link" onclick="showHandout()" id="btnTabHandout"><i class="fas fa-book-medical"></i> คู่มือ</button></li>
   </ul>
 
   <div id="dashboardSection">
     <div id="pdfDashboardArea">
+      
+      <div class="row g-2 g-md-3 mb-4 print-hide">
+        <div class="col-3">
+          <button class="quick-menu-btn text-center" onclick="showForm()">
+            <i class="fas fa-plus-circle" style="color: #6f42c1;"></i>
+            <span class="d-block" style="font-size: 0.75rem;">บันทึกเวร</span>
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="quick-menu-btn text-center" onclick="showEvent()">
+            <i class="fas fa-clipboard-list" style="color: #e83e8c;"></i>
+            <span class="d-block" style="font-size: 0.75rem;">เหตุการณ์</span>
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="quick-menu-btn text-center" onclick="showTable()">
+            <i class="fas fa-list-ul" style="color: #1e3c72;"></i>
+            <span class="d-block" style="font-size: 0.75rem;">ประวัติ</span>
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="quick-menu-btn text-center" onclick="showHandout()">
+            <i class="fas fa-book-medical" style="color: #10b981;"></i>
+            <span class="d-block" style="font-size: 0.75rem;">คู่มือ</span>
+          </button>
+        </div>
+      </div>
 
       <div class="row g-3 mb-4">
         <div class="col-6 col-md-3">
@@ -271,6 +301,63 @@
     </div>
   </div>
 
+  <div id="eventSection" style="display:none;">
+    <div class="custom-card">
+      <div class="card-title-bar text-white" style="background: linear-gradient(135deg, #e83e8c, #c2185b);">
+        <i class="fas fa-link text-white"></i> เพิ่มลิงก์บันทึกเหตุการณ์
+      </div>
+      <div class="card-body-custom">
+        <form id="eventForm" onsubmit="saveEvent(event)">
+          <div class="row g-3">
+            <div class="col-12 col-md-3">
+              <label class="form-label">แผนก</label>
+              <select class="form-select" id="evDept" required>
+                <option value="ER">ER</option>
+                <option value="LR">LR</option>
+                <option value="IPDหญิง">IPD หญิง</option>
+                <option value="IPDชาย">IPD ชาย</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-3">
+              <label class="form-label">เดือน/ปี ที่เกิดเหตุ</label>
+              <input type="month" class="form-control" id="evMonth" required>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label">URL ลิงก์บันทึกเหตุการณ์</label>
+              <input type="url" class="form-control" id="evUrl" placeholder="https://..." required>
+            </div>
+            <div class="col-12 col-md-2 d-flex align-items-end">
+              <button type="submit" class="btn text-white w-100" style="background-color: #e83e8c; font-weight: 600;">
+                <i class="fas fa-save me-1"></i> บันทึก
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="custom-card">
+      <div class="card-title-bar d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div><i class="fas fa-folder-open"></i> รายการบันทึกเหตุการณ์</div>
+        <select class="form-select form-select-sm w-auto" id="evSort" onchange="renderEvents()">
+          <option value="desc">เรียง: ล่าสุดก่อน (บนลงล่าง)</option>
+          <option value="asc">เรียง: เก่าสุดก่อน (ล่างขึ้นบน)</option>
+        </select>
+      </div>
+      <div class="card-body-custom">
+        <ul class="nav nav-tabs mb-4" id="eventTabs">
+          <li class="nav-item"><button class="nav-link active fw-bold" onclick="switchEventTab('ER', this)">ER</button></li>
+          <li class="nav-item"><button class="nav-link fw-bold" onclick="switchEventTab('LR', this)">LR</button></li>
+          <li class="nav-item"><button class="nav-link fw-bold" onclick="switchEventTab('IPDหญิง', this)">IPD หญิง</button></li>
+          <li class="nav-item"><button class="nav-link fw-bold" onclick="switchEventTab('IPDชาย', this)">IPD ชาย</button></li>
+        </ul>
+        
+        <div class="row g-3" id="eventLinkContainer">
+          </div>
+      </div>
+    </div>
+  </div>
+
   <div id="tableSection" style="display:none;">
     <div class="custom-card card-body-custom">
       <div class="table-responsive">
@@ -283,38 +370,20 @@
   </div>
 
   <div id="handoutSection" style="display:none;" class="ho-bg pb-5">
-    
     <div class="ho-header">
       <div class="d-flex align-items-center gap-3">
         <i class="fas fa-heartbeat fa-3x"></i>
-        <div>
-          <h1 class="mb-0 fw-bold fs-3">คู่มือพยาบาลตรวจการ</h1>
-          <p class="mb-0 opacity-75 fs-5">Nurse Supervisor Guide — โรงพยาบาลชุมชน</p>
-        </div>
+        <div><h1 class="mb-0 fw-bold fs-3">คู่มือพยาบาลตรวจการ</h1><p class="mb-0 opacity-75 fs-5">Nurse Supervisor Guide — โรงพยาบาลชุมชน</p></div>
       </div>
       <div class="d-flex align-items-center gap-3 mt-3 mt-md-0">
-        <div class="text-end d-none d-md-block">
-          <p class="mb-0 fw-bold fs-5">5 ความรู้หลัก</p>
-          <p class="mb-0 fs-6 opacity-75">ที่ต้องมีในเวรตรวจการ</p>
-        </div>
-        <button onclick="window.print()" class="btn btn-light rounded-circle print-hide shadow-sm" style="width:50px; height:50px;" title="พิมพ์ Infographic">
-          <i class="fas fa-print fs-5 text-primary"></i>
-        </button>
+        <div class="text-end d-none d-md-block"><p class="mb-0 fw-bold fs-5">5 ความรู้หลัก</p><p class="mb-0 fs-6 opacity-75">ที่ต้องมีในเวรตรวจการ</p></div>
+        <button onclick="window.print()" class="btn btn-light rounded-circle print-hide shadow-sm" style="width:50px; height:50px;" title="พิมพ์ Infographic"><i class="fas fa-print fs-5 text-primary"></i></button>
       </div>
     </div>
-
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      
       <div class="col">
         <div class="ho-card theme-blue">
-          <div class="ho-card-header">
-            <div class="ho-icon-box"><i class="fas fa-users"></i></div>
-            <div>
-              <div class="ho-module-badge">Module 01</div>
-              <h3 class="ho-title">การบริหารอัตรากำลัง</h3>
-              <p class="ho-subtitle">Human Resource Management</p>
-            </div>
-          </div>
+          <div class="ho-card-header"><div class="ho-icon-box"><i class="fas fa-users"></i></div><div><div class="ho-module-badge">Module 01</div><h3 class="ho-title">การบริหารอัตรากำลัง</h3><p class="ho-subtitle">Human Resource Management</p></div></div>
           <div class="ho-card-body">
             <ul class="ho-list">
               <li><div class="ho-bullet"></div><div><b>ประเมินก่อนรับเวร:</b> IPD ผู้ป่วยหนัก สัดส่วนพยาบาลไม่เกิน 1:4 / ER ไม่เกิน 1:3</div></li>
@@ -323,27 +392,12 @@
               <li><div class="ho-bullet"></div><div><b>ติดตามผล:</b> บันทึก Supervisor Log และรายงานตอนส่งเวร</div></li>
             </ul>
           </div>
-          <div class="mt-auto">
-            <div class="ho-tags-area">
-              <span class="ho-tag">Float Policy</span><span class="ho-tag">On-call List</span><span class="ho-tag">Acuity Tool</span><span class="ho-tag">Supervisor Log</span>
-            </div>
-            <div class="ho-alert-area alert-blue">
-              <i class="fas fa-exclamation-triangle me-1"></i> ห้ามหอผู้ป่วยวิกฤตมีพยาบาลคนเดียวเด็ดขาด ขาดคนต้องแจ้งผู้บริหารทันที
-            </div>
-          </div>
+          <div class="mt-auto"><div class="ho-tags-area"><span class="ho-tag">Float Policy</span><span class="ho-tag">On-call List</span><span class="ho-tag">Acuity Tool</span><span class="ho-tag">Supervisor Log</span></div><div class="ho-alert-area alert-blue"><i class="fas fa-exclamation-triangle me-1"></i> ห้ามหอผู้ป่วยวิกฤตมีพยาบาลคนเดียวเด็ดขาด ขาดคนต้องแจ้งผู้บริหารทันที</div></div>
         </div>
       </div>
-
       <div class="col">
         <div class="ho-card theme-orange">
-          <div class="ho-card-header">
-            <div class="ho-icon-box"><i class="fas fa-exclamation-triangle"></i></div>
-            <div>
-              <div class="ho-module-badge">Module 02</div>
-              <h3 class="ho-title">ฉุกเฉินและอุบัติภัยหมู่</h3>
-              <p class="ho-subtitle">Emergency & MCI</p>
-            </div>
-          </div>
+          <div class="ho-card-header"><div class="ho-icon-box"><i class="fas fa-exclamation-triangle"></i></div><div><div class="ho-module-badge">Module 02</div><h3 class="ho-title">ฉุกเฉินและอุบัติภัยหมู่</h3><p class="ho-subtitle">Emergency & MCI</p></div></div>
           <div class="ho-card-body">
             <ul class="ho-list">
               <li><div class="ho-bullet"></div><div><b>ประเมินขนาด:</b> แยก 'ฉุกเฉินปกติ' กับ 'MCI' (ผู้บาดเจ็บ > ทรัพยากร)</div></li>
@@ -352,63 +406,26 @@
               <li><div class="ho-bullet"></div><div><b>Surge Management:</b> จัด Zone &rarr; D/C เคส stable &rarr; เตรียม Supplies/EMS</div></li>
             </ul>
           </div>
-          <div class="mt-auto">
-            <div class="ho-tags-area">
-              <span class="ho-tag">START Triage</span><span class="ho-tag">Code Disaster</span><span class="ho-tag">Command Post</span><span class="ho-tag">Surge Plan</span>
-            </div>
-            <div class="ho-alert-area alert-orange">
-              <i class="fas fa-lightbulb me-1"></i> หลัก MCI: Greatest Good for Greatest Number ช่วยผู้ที่มีโอกาสรอดก่อน
-            </div>
-          </div>
+          <div class="mt-auto"><div class="ho-tags-area"><span class="ho-tag">START Triage</span><span class="ho-tag">Code Disaster</span><span class="ho-tag">Command Post</span><span class="ho-tag">Surge Plan</span></div><div class="ho-alert-area alert-orange"><i class="fas fa-lightbulb me-1"></i> หลัก MCI: Greatest Good for Greatest Number ช่วยผู้ที่มีโอกาสรอดก่อน</div></div>
         </div>
       </div>
-
       <div class="col">
         <div class="ho-card theme-teal">
-          <div class="ho-card-header">
-            <div class="ho-icon-box"><i class="fas fa-ambulance"></i></div>
-            <div>
-              <div class="ho-module-badge">Module 03</div>
-              <h3 class="ho-title">ระบบการส่งต่อผู้ป่วย</h3>
-              <p class="ho-subtitle">Patient Referral System</p>
-            </div>
-          </div>
+          <div class="ho-card-header"><div class="ho-icon-box"><i class="fas fa-ambulance"></i></div><div><div class="ho-module-badge">Module 03</div><h3 class="ho-title">ระบบการส่งต่อผู้ป่วย</h3><p class="ho-subtitle">Patient Referral System</p></div></div>
           <div class="ho-card-body">
             <ul class="ho-list">
-              <li><div class="ho-bullet"></div>
-                <div><b>เคสที่ต้อง Refer:</b><br>
-                  <span class="ho-mini-badge badge-rose">ผ่าตัดเฉพาะทาง</span>
-                  <span class="ho-mini-badge badge-rose">ต้องการ ICU จริง</span><br>
-                  <span class="ho-mini-badge badge-rose">CT/MRI ฉุกเฉิน</span>
-                  <span class="ho-mini-badge badge-rose">ขาดแพทย์เฉพาะทาง</span>
-                </div>
-              </li>
+              <li><div class="ho-bullet"></div><div><b>เคสที่ต้อง Refer:</b><br><span class="ho-mini-badge badge-rose">ผ่าตัดเฉพาะทาง</span><span class="ho-mini-badge badge-rose">ต้องการ ICU จริง</span><br><span class="ho-mini-badge badge-rose">CT/MRI ฉุกเฉิน</span><span class="ho-mini-badge badge-rose">ขาดแพทย์เฉพาะทาง</span></div></li>
               <li><div class="ho-bullet"></div><div><b>รายงาน ISBAR:</b> Identify / Situation / Background / Assessment / Recommend</div></li>
               <li><div class="ho-bullet"></div><div><b>เตรียมผู้ป่วย:</b> Stabilize V/S &rarr; เตรียมเอกสาร &rarr; ขอ Consent &rarr; ให้การรักษาต่อ</div></li>
               <li><div class="ho-bullet"></div><div><b>ประสาน EMS:</b> จัดรถพร้อม Escort &rarr; ส่งมอบข้อมูลให้ทีม</div></li>
             </ul>
           </div>
-          <div class="mt-auto">
-            <div class="ho-tags-area">
-              <span class="ho-tag">ISBAR</span><span class="ho-tag">Transfer Decision</span><span class="ho-tag">EMS</span><span class="ho-tag">Referral Audit</span>
-            </div>
-            <div class="ho-alert-area alert-teal">
-              <i class="fas fa-clock me-1"></i> เป้าหมาย: Door-to-Door สำหรับผู้ป่วยวิกฤตไม่ควรเกิน 30 นาที
-            </div>
-          </div>
+          <div class="mt-auto"><div class="ho-tags-area"><span class="ho-tag">ISBAR</span><span class="ho-tag">Transfer Decision</span><span class="ho-tag">EMS</span><span class="ho-tag">Referral Audit</span></div><div class="ho-alert-area alert-teal"><i class="fas fa-clock me-1"></i> เป้าหมาย: Door-to-Door สำหรับผู้ป่วยวิกฤตไม่ควรเกิน 30 นาที</div></div>
         </div>
       </div>
-
       <div class="col">
         <div class="ho-card theme-green">
-          <div class="ho-card-header">
-            <div class="ho-icon-box"><i class="fas fa-shield-alt"></i></div>
-            <div>
-              <div class="ho-module-badge">Module 04</div>
-              <h3 class="ho-title">คุณภาพและความปลอดภัย</h3>
-              <p class="ho-subtitle">HA & 2P Safety Goals</p>
-            </div>
-          </div>
+          <div class="ho-card-header"><div class="ho-icon-box"><i class="fas fa-shield-alt"></i></div><div><div class="ho-module-badge">Module 04</div><h3 class="ho-title">คุณภาพและความปลอดภัย</h3><p class="ho-subtitle">HA & 2P Safety Goals</p></div></div>
           <div class="ho-card-body">
             <ul class="ho-list">
               <li><div class="ho-bullet"></div><div><b>จัดการทันที:</b> เมื่อเกิดเหตุ (เช่น ตกเตียง) ให้รักษา Situation/ความปลอดภัยผู้ป่วยก่อน</div></li>
@@ -417,27 +434,12 @@
               <li><div class="ho-bullet"></div><div><b>IC & Med Error:</b> ดู Hand Hygiene / ให้ยาผิดต้องหยุดยา, แจ้งแพทย์, เขียน IR</div></li>
             </ul>
           </div>
-          <div class="mt-auto">
-            <div class="ho-tags-area">
-              <span class="ho-tag">SIMPLE Goals</span><span class="ho-tag">Incident Report</span><span class="ho-tag">Hand Hygiene</span><span class="ho-tag">Open Disclosure</span>
-            </div>
-            <div class="ho-alert-area alert-green">
-              <i class="fas fa-check-circle me-1"></i> วัฒนธรรม 'Just Culture': รายงานเพื่อเรียนรู้และป้องกัน ไม่ใช่เพื่อลงโทษ
-            </div>
-          </div>
+          <div class="mt-auto"><div class="ho-tags-area"><span class="ho-tag">SIMPLE Goals</span><span class="ho-tag">Incident Report</span><span class="ho-tag">Hand Hygiene</span><span class="ho-tag">Open Disclosure</span></div><div class="ho-alert-area alert-green"><i class="fas fa-check-circle me-1"></i> วัฒนธรรม 'Just Culture': รายงานเพื่อเรียนรู้และป้องกัน ไม่ใช่เพื่อลงโทษ</div></div>
         </div>
       </div>
-
       <div class="col">
         <div class="ho-card theme-purple">
-          <div class="ho-card-header">
-            <div class="ho-icon-box"><i class="fas fa-balance-scale"></i></div>
-            <div>
-              <div class="ho-module-badge">Module 05</div>
-              <h3 class="ho-title">กฎหมายและสิทธิผู้ป่วย</h3>
-              <p class="ho-subtitle">Law & Conflict Resolution</p>
-            </div>
-          </div>
+          <div class="ho-card-header"><div class="ho-icon-box"><i class="fas fa-balance-scale"></i></div><div><div class="ho-module-badge">Module 05</div><h3 class="ho-title">กฎหมายและสิทธิผู้ป่วย</h3><p class="ho-subtitle">Law & Conflict Resolution</p></div></div>
           <div class="ho-card-body">
             <ul class="ho-list">
               <li><div class="ho-bullet"></div><div><b>รับมือร้องเรียน:</b> พาไปห้องเงียบ &rarr; ฟังไม่ขัด &rarr; อธิบายข้อเท็จจริง &rarr; ไม่โต้เถียง</div></li>
@@ -446,17 +448,9 @@
               <li><div class="ho-bullet"></div><div><b>จัดการศพ & นิติเวช:</b> ตายผิดธรรมชาติ &rarr; แจ้งตำรวจ &rarr; อย่าทิ้งหลักฐาน</div></li>
             </ul>
           </div>
-          <div class="mt-auto">
-            <div class="ho-tags-area">
-              <span class="ho-tag">Patient Rights</span><span class="ho-tag">AMA Form</span><span class="ho-tag">PDPA</span><span class="ho-tag">Medicolegal</span>
-            </div>
-            <div class="ho-alert-area alert-purple">
-              <i class="fas fa-gavel me-1"></i> หลักทอง: ไม่แน่ใจกฎหมาย อย่าทำคนเดียว ให้ปรึกษาผู้บริหารทันที
-            </div>
-          </div>
+          <div class="mt-auto"><div class="ho-tags-area"><span class="ho-tag">Patient Rights</span><span class="ho-tag">AMA Form</span><span class="ho-tag">PDPA</span><span class="ho-tag">Medicolegal</span></div><div class="ho-alert-area alert-purple"><i class="fas fa-gavel me-1"></i> หลักทอง: ไม่แน่ใจกฎหมาย อย่าทำคนเดียว ให้ปรึกษาผู้บริหารทันที</div></div>
         </div>
       </div>
-
       <div class="col">
         <div class="ho-card text-white p-4 d-flex flex-column justify-content-center border-top-0" style="background: linear-gradient(135deg, #1e293b, #334155);">
           <i class="fas fa-clipboard-check fa-3x mb-3 text-secondary opacity-50"></i>
@@ -467,178 +461,25 @@
             <li><i class="far fa-square text-secondary"></i> เคลียร์เคส Refer เรียบร้อย / ดำเนินการอยู่</li>
             <li><i class="far fa-square text-secondary"></i> จัดเตรียมอัตรากำลังของเวรถัดไป</li>
           </ul>
-          <p class="mt-auto pt-3 border-top border-secondary text-secondary" style="font-size: 0.8rem;">
-            พยาบาลตรวจการคือแกนหลักในการดูแลระบบ รักษามาตรฐาน และดูแลบุคลากรในผลัด
-          </p>
+          <p class="mt-auto pt-3 border-top border-secondary text-secondary" style="font-size: 0.8rem;">พยาบาลตรวจการคือแกนหลักในการดูแลระบบ รักษามาตรฐาน และดูแลบุคลากรในผลัด</p>
         </div>
       </div>
-
     </div>
-
+    
     <div class="mt-5 pt-4 print-page-break">
       <div class="d-flex align-items-center gap-3 mb-4">
-        <div class="bg-indigo text-white p-3 rounded-4 shadow-sm">
-          <i class="fas fa-briefcase-medical fs-2"></i>
-        </div>
-        <div>
-          <h2 class="mb-0 fw-bold fs-3 text-dark">แนวทางนิติเวชคลินิก</h2>
-          <p class="mb-0 fw-bold" style="color: #4f46e5;">Clinical Forensic Medicine (Step-by-Step)</p>
-        </div>
+        <div class="bg-indigo text-white p-3 rounded-4 shadow-sm"><i class="fas fa-briefcase-medical fs-2"></i></div>
+        <div><h2 class="mb-0 fw-bold fs-3 text-dark">แนวทางนิติเวชคลินิก</h2><p class="mb-0 fw-bold" style="color: #4f46e5;">Clinical Forensic Medicine (Step-by-Step)</p></div>
       </div>
-
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        
-        <div class="col">
-          <div class="ho-card theme-indigo">
-            <div class="ho-step-badge bg-indigo">Step 1</div>
-            <div class="ho-card-header pt-4">
-              <div class="ho-icon-box"><i class="fas fa-file-signature"></i></div>
-              <div>
-                <h3 class="ho-title fs-5">เตรียมพร้อม & สิทธิ</h3>
-                <p class="ho-subtitle">Pre-exam & Consent</p>
-              </div>
-            </div>
-            <div class="ho-card-body pt-2">
-              <ul class="ho-list">
-                <li><div class="ho-bullet"></div><div><b>เคสส่งชันสูตร/แจ้งตำรวจ (ตายผิดธรรมชาติ):</b>
-                  <br><span class="ho-mini-badge badge-indigo">ฆ่าตัวตาย</span> <span class="ho-mini-badge badge-indigo">ถูกทำร้าย</span>
-                  <br><span class="ho-mini-badge badge-indigo">สัตว์ทำร้าย</span> <span class="ho-mini-badge badge-indigo">อุบัติเหตุ</span>
-                  <br><span class="ho-mini-badge badge-indigo">ตายไม่ทราบสาเหตุ/ตายใน 24ชม.</span>
-                </div></li>
-                <li><div class="ho-bullet"></div><div><b>ขอ Consent:</b> ขอความยินยอมก่อนตรวจ/เก็บหลักฐาน/ถ่ายภาพ (ใบ Consent แยก)</div></li>
-                <li><div class="ho-bullet"></div><div><b>ความลับ:</b> ห้ามเปิดเผยข้อมูลถ้าไม่มีหนังสือราชการสั่ง</div></li>
-              </ul>
-            </div>
-            <div class="mt-auto">
-              <div class="ho-tags-area">
-                <span class="ho-tag">Police</span><span class="ho-tag">Consent</span><span class="ho-tag">PDPA</span>
-              </div>
-              <div class="ho-alert-area alert-indigo">
-                <i class="fas fa-ambulance me-1"></i> หากฉุกเฉิน: ชีวิตผู้ป่วยมาก่อน รักษาก่อนได้ทันทีไม่ต้องรอตำรวจ
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="ho-card theme-cyan">
-            <div class="ho-step-badge bg-cyan">Step 2</div>
-            <div class="ho-card-header pt-4">
-              <div class="ho-icon-box"><i class="fas fa-search"></i></div>
-              <div>
-                <h3 class="ho-title fs-5">ซักประวัติ & ตรวจร่างกาย</h3>
-                <p class="ho-subtitle">History & Physical Exam</p>
-              </div>
-            </div>
-            <div class="ho-card-body pt-2">
-              <ul class="ho-list">
-                <li><div class="ho-bullet"></div><div><b>บันทึกคำพูด:</b> บันทึกด้วยคำพูดตรงๆ (Verbatim) ของผู้ป่วย ห้ามตีความเอง</div></li>
-                <li><div class="ho-bullet"></div><div><b>เตรียมตรวจ:</b> ตรวจในห้องมิดชิด มีพยาน วางกระดาษขาวใต้ผู้ป่วยรองรับหลักฐานที่ร่วง</div></li>
-                <li><div class="ho-bullet"></div><div><b>ตรวจบาดแผล:</b> บรรยายขนาด (cm), รูปร่าง, ตำแหน่ง ลงใน Body Diagram</div></li>
-              </ul>
-            </div>
-            <div class="mt-auto">
-              <div class="ho-tags-area">
-                <span class="ho-tag">Verbatim</span><span class="ho-tag">Head-to-Toe</span><span class="ho-tag">Body Diagram</span>
-              </div>
-              <div class="ho-alert-area alert-cyan">
-                <i class="fas fa-ban me-1 text-danger"></i> ห้าม: ระบุอายุรอยช้ำจากสี และห้ามระบุรอยยิงเข้า/ออกเอง (หน้าที่นิติแพทย์)
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="ho-card theme-emerald">
-            <div class="ho-step-badge bg-emerald">Step 3</div>
-            <div class="ho-card-header pt-4">
-              <div class="ho-icon-box"><i class="fas fa-box"></i></div>
-              <div>
-                <h3 class="ho-title fs-5">การเก็บวัตถุพยาน</h3>
-                <p class="ho-subtitle">Evidence Collection</p>
-              </div>
-            </div>
-            <div class="ho-card-body pt-2">
-              <ul class="ho-list">
-                <li><div class="ho-bullet"></div><div><b>คดีทางเพศ:</b> <span class="text-success fw-bold">หากไม่มีชุด SAEK ให้ Refer ส่งแม่ข่ายทันที (< 72 ชม.)</span></div></li>
-                <li><div class="ho-bullet"></div><div><b>ถุงกระดาษ:</b> เสื้อผ้า/หลักฐานชีวภาพต้องใส่ 'ถุงกระดาษ' แยกชิ้น ห้ามพลาสติก</div></li>
-                <li><div class="ho-bullet"></div><div><b>DNA Swab:</b> ปล่อยให้แห้งในอากาศเย็นก่อนเก็บ ห้ามใช้ความร้อนเป่า</div></li>
-                <li><div class="ho-bullet"></div><div><b>เก็บเลือด:</b> เจาะก่อนให้สารน้ำ ห้ามใช้แอลกอฮอล์เช็ด (ใช้ Povidone-iodine แทน)</div></li>
-              </ul>
-            </div>
-            <div class="mt-auto">
-              <div class="ho-tags-area">
-                <span class="ho-tag">Paper Bag</span><span class="ho-tag">DNA Swab</span><span class="ho-tag">Toxicology</span>
-              </div>
-              <div class="ho-alert-area alert-emerald">
-                <i class="fas fa-tag me-1"></i> Label ทันที: ระบุชื่อ HN วันเวลา ผู้เก็บ และซีลปิดทับลายเซ็น
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="ho-card theme-rose">
-            <div class="ho-step-badge bg-rose">Step 4</div>
-            <div class="ho-card-header pt-4">
-              <div class="ho-icon-box"><i class="fas fa-camera"></i></div>
-              <div>
-                <h3 class="ho-title fs-5">ถ่ายภาพ & เวชระเบียน</h3>
-                <p class="ho-subtitle">Photo & Documentation</p>
-              </div>
-            </div>
-            <div class="ho-card-body pt-2">
-              <ul class="ho-list">
-                <li><div class="ho-bullet"></div><div><b>ถ่ายภาพ:</b> ถ่ายก่อนล้างแผลเสมอ ถ่าย 3 ระยะ: ภาพรวม &rarr; อ้างอิง &rarr; Close-up</div></li>
-                <li><div class="ho-bullet"></div><div><b>ใช้ Scale:</b> วางไม้บรรทัดระนาบเดียวกับแผล ถ่ายทั้งแบบมี/ไม่มี Scale คู่กัน</div></li>
-                <li><div class="ho-bullet"></div><div><b>บันทึก 5W1H:</b> ใคร ทำอะไร ที่ไหน เมื่อไหร่ อย่างไร บันทึกเฉพาะข้อเท็จจริง ห้ามเดา</div></li>
-              </ul>
-            </div>
-            <div class="mt-auto">
-              <div class="ho-tags-area">
-                <span class="ho-tag">Scale Rule</span><span class="ho-tag">5W1H</span><span class="ho-tag">Metadata</span>
-              </div>
-              <div class="ho-alert-area alert-rose">
-                <i class="fas fa-exclamation-circle me-1"></i> ถ่ายรูปก่อนรักษา: เพราะเมื่อเย็บแผลหรือล้างแล้ว ลักษณะแผลจะเปลี่ยนไป
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="ho-card theme-fuchsia">
-            <div class="ho-step-badge bg-fuchsia">Step 5</div>
-            <div class="ho-card-header pt-4">
-              <div class="ho-icon-box"><i class="fas fa-link"></i></div>
-              <div>
-                <h3 class="ho-title fs-5">ส่งมอบหลักฐาน & ศพ</h3>
-                <p class="ho-subtitle">Chain of Custody & Autopsy</p>
-              </div>
-            </div>
-            <div class="ho-card-body pt-2">
-              <ul class="ho-list">
-                <li><div class="ho-bullet"></div><div><b>บันทึกส่งมอบ:</b> ใช้ Chain of Custody Form ระบุผู้ส่ง-รับทุกครั้ง ห้ามวางทิ้งไว้</div></li>
-                <li><div class="ho-bullet"></div><div><b>การส่งต่อ:</b> ตรวจสอบ Seal ก่อนส่งมอบตำรวจ/Lab พร้อมเก็บสำเนาฟอร์ม</div></li>
-                <li><div class="ho-bullet"></div><div><b>ส่งชันสูตรศพ:</b> <span class="text-danger fw-bold">ตายผิดธรรมชาติ ห้ามล้างศพ ห้ามถอดสาย IV/Tube ผูกป้ายส่งชันสูตรทันที</span></div></li>
-              </ul>
-            </div>
-            <div class="mt-auto">
-              <div class="ho-tags-area">
-                <span class="ho-tag">Chain of Custody</span><span class="ho-tag">Autopsy</span><span class="ho-tag">Transfer Form</span>
-              </div>
-              <div class="ho-alert-area alert-fuchsia">
-                <i class="fas fa-link me-1"></i> ห้ามขาดสาย: หาก Chain of Custody ขาด หลักฐานอาจถูกปฏิเสธในศาล
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <div class="col"><div class="ho-card theme-indigo"><div class="ho-step-badge bg-indigo">Step 1</div><div class="ho-card-header pt-4"><div class="ho-icon-box"><i class="fas fa-file-signature"></i></div><div><h3 class="ho-title fs-5">เตรียมพร้อม & สิทธิ</h3><p class="ho-subtitle">Pre-exam & Consent</p></div></div><div class="ho-card-body pt-2"><ul class="ho-list"><li><div class="ho-bullet"></div><div><b>เคสส่งชันสูตร/แจ้งตำรวจ (ตายผิดธรรมชาติ):</b><br><span class="ho-mini-badge badge-indigo">ฆ่าตัวตาย</span> <span class="ho-mini-badge badge-indigo">ถูกทำร้าย</span><br><span class="ho-mini-badge badge-indigo">สัตว์ทำร้าย</span> <span class="ho-mini-badge badge-indigo">อุบัติเหตุ</span><br><span class="ho-mini-badge badge-indigo">ตายไม่ทราบสาเหตุ/ตายใน 24ชม.</span></div></li><li><div class="ho-bullet"></div><div><b>ขอ Consent:</b> ขอความยินยอมก่อนตรวจ/เก็บหลักฐาน/ถ่ายภาพ (ใบ Consent แยก)</div></li><li><div class="ho-bullet"></div><div><b>ความลับ:</b> ห้ามเปิดเผยข้อมูลถ้าไม่มีหนังสือราชการสั่ง</div></li></ul></div><div class="mt-auto"><div class="ho-tags-area"><span class="ho-tag">Police</span><span class="ho-tag">Consent</span><span class="ho-tag">PDPA</span></div><div class="ho-alert-area alert-indigo"><i class="fas fa-ambulance me-1"></i> หากฉุกเฉิน: ชีวิตผู้ป่วยมาก่อน รักษาก่อนได้ทันทีไม่ต้องรอตำรวจ</div></div></div></div>
+        <div class="col"><div class="ho-card theme-cyan"><div class="ho-step-badge bg-cyan">Step 2</div><div class="ho-card-header pt-4"><div class="ho-icon-box"><i class="fas fa-search"></i></div><div><h3 class="ho-title fs-5">ซักประวัติ & ตรวจร่างกาย</h3><p class="ho-subtitle">History & Physical Exam</p></div></div><div class="ho-card-body pt-2"><ul class="ho-list"><li><div class="ho-bullet"></div><div><b>บันทึกคำพูด:</b> บันทึกด้วยคำพูดตรงๆ (Verbatim) ของผู้ป่วย ห้ามตีความเอง</div></li><li><div class="ho-bullet"></div><div><b>เตรียมตรวจ:</b> ตรวจในห้องมิดชิด มีพยาน วางกระดาษขาวใต้ผู้ป่วยรองรับหลักฐานที่ร่วง</div></li><li><div class="ho-bullet"></div><div><b>ตรวจบาดแผล:</b> บรรยายขนาด (cm), รูปร่าง, ตำแหน่ง ลงใน Body Diagram</div></li></ul></div><div class="mt-auto"><div class="ho-tags-area"><span class="ho-tag">Verbatim</span><span class="ho-tag">Head-to-Toe</span><span class="ho-tag">Body Diagram</span></div><div class="ho-alert-area alert-cyan"><i class="fas fa-ban me-1 text-danger"></i> ห้าม: ระบุอายุรอยช้ำจากสี และห้ามระบุรอยยิงเข้า/ออกเอง (หน้าที่นิติแพทย์)</div></div></div></div>
+        <div class="col"><div class="ho-card theme-emerald"><div class="ho-step-badge bg-emerald">Step 3</div><div class="ho-card-header pt-4"><div class="ho-icon-box"><i class="fas fa-box"></i></div><div><h3 class="ho-title fs-5">การเก็บวัตถุพยาน</h3><p class="ho-subtitle">Evidence Collection</p></div></div><div class="ho-card-body pt-2"><ul class="ho-list"><li><div class="ho-bullet"></div><div><b>คดีทางเพศ:</b> <span class="text-success fw-bold">หากไม่มีชุด SAEK ให้ Refer ส่งแม่ข่ายทันที (< 72 ชม.)</span></div></li><li><div class="ho-bullet"></div><div><b>ถุงกระดาษ:</b> เสื้อผ้า/หลักฐานชีวภาพต้องใส่ 'ถุงกระดาษ' แยกชิ้น ห้ามพลาสติก</div></li><li><div class="ho-bullet"></div><div><b>DNA Swab:</b> ปล่อยให้แห้งในอากาศเย็นก่อนเก็บ ห้ามใช้ความร้อนเป่า</div></li><li><div class="ho-bullet"></div><div><b>เก็บเลือด:</b> เจาะก่อนให้สารน้ำ ห้ามใช้แอลกอฮอล์เช็ด (ใช้ Povidone-iodine แทน)</div></li></ul></div><div class="mt-auto"><div class="ho-tags-area"><span class="ho-tag">Paper Bag</span><span class="ho-tag">DNA Swab</span><span class="ho-tag">Toxicology</span></div><div class="ho-alert-area alert-emerald"><i class="fas fa-tag me-1"></i> Label ทันที: ระบุชื่อ HN วันเวลา ผู้เก็บ และซีลปิดทับลายเซ็น</div></div></div></div>
+        <div class="col"><div class="ho-card theme-rose"><div class="ho-step-badge bg-rose">Step 4</div><div class="ho-card-header pt-4"><div class="ho-icon-box"><i class="fas fa-camera"></i></div><div><h3 class="ho-title fs-5">ถ่ายภาพ & เวชระเบียน</h3><p class="ho-subtitle">Photo & Documentation</p></div></div><div class="ho-card-body pt-2"><ul class="ho-list"><li><div class="ho-bullet"></div><div><b>ถ่ายภาพ:</b> ถ่ายก่อนล้างแผลเสมอ ถ่าย 3 ระยะ: ภาพรวม &rarr; อ้างอิง &rarr; Close-up</div></li><li><div class="ho-bullet"></div><div><b>ใช้ Scale:</b> วางไม้บรรทัดระนาบเดียวกับแผล ถ่ายทั้งแบบมี/ไม่มี Scale คู่กัน</div></li><li><div class="ho-bullet"></div><div><b>บันทึก 5W1H:</b> ใคร ทำอะไร ที่ไหน เมื่อไหร่ อย่างไร บันทึกเฉพาะข้อเท็จจริง ห้ามเดา</div></li></ul></div><div class="mt-auto"><div class="ho-tags-area"><span class="ho-tag">Scale Rule</span><span class="ho-tag">5W1H</span><span class="ho-tag">Metadata</span></div><div class="ho-alert-area alert-rose"><i class="fas fa-exclamation-circle me-1"></i> ถ่ายรูปก่อนรักษา: เพราะเมื่อเย็บแผลหรือล้างแล้ว ลักษณะแผลจะเปลี่ยนไป</div></div></div></div>
+        <div class="col"><div class="ho-card theme-fuchsia"><div class="ho-step-badge bg-fuchsia">Step 5</div><div class="ho-card-header pt-4"><div class="ho-icon-box"><i class="fas fa-link"></i></div><div><h3 class="ho-title fs-5">ส่งมอบหลักฐาน & ศพ</h3><p class="ho-subtitle">Chain of Custody & Autopsy</p></div></div><div class="ho-card-body pt-2"><ul class="ho-list"><li><div class="ho-bullet"></div><div><b>บันทึกส่งมอบ:</b> ใช้ Chain of Custody Form ระบุผู้ส่ง-รับทุกครั้ง ห้ามวางทิ้งไว้</div></li><li><div class="ho-bullet"></div><div><b>การส่งต่อ:</b> ตรวจสอบ Seal ก่อนส่งมอบตำรวจ/Lab พร้อมเก็บสำเนาฟอร์ม</div></li><li><div class="ho-bullet"></div><div><b>ส่งชันสูตรศพ:</b> <span class="text-danger fw-bold">ตายผิดธรรมชาติ ห้ามล้างศพ ห้ามถอดสาย IV/Tube ผูกป้ายส่งชันสูตรทันที</span></div></li></ul></div><div class="mt-auto"><div class="ho-tags-area"><span class="ho-tag">Chain of Custody</span><span class="ho-tag">Autopsy</span><span class="ho-tag">Transfer Form</span></div><div class="ho-alert-area alert-fuchsia"><i class="fas fa-link me-1"></i> ห้ามขาดสาย: หาก Chain of Custody ขาด หลักฐานอาจถูกปฏิเสธในศาล</div></div></div></div>
         <div class="col">
           <div class="ho-card text-white p-4 d-flex flex-column border-top-0" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
-            <div class="d-flex align-items-center gap-2 mb-4">
-              <i class="fas fa-exclamation-circle fs-3 text-danger"></i>
-              <h2 class="fw-bold fs-5 mb-0">สิ่งที่ต้องจำเสมอ (Quick Ref)</h2>
-            </div>
+            <div class="d-flex align-items-center gap-2 mb-4"><i class="fas fa-exclamation-circle fs-3 text-danger"></i><h2 class="fw-bold fs-5 mb-0">สิ่งที่ต้องจำเสมอ (Quick Ref)</h2></div>
             <ul class="ho-list mb-0 flex-grow-1" style="font-size: 0.85rem; color: #cbd5e1;">
               <li><span class="text-danger fw-bold font-monospace">01</span> <span>ถ่ายรูปบาดแผล <b class="text-white">ก่อนล้าง/รักษาเสมอ</b></span></li>
               <li><span class="text-danger fw-bold font-monospace">02</span> <span>หลักฐานชีวภาพใช้ <b class="text-white">ถุงกระดาษเท่านั้น</b></span></li>
@@ -653,13 +494,9 @@
             </ul>
           </div>
         </div>
-
       </div>
     </div>
-    
-    <div class="text-center mt-5 text-muted small d-none d-print-block">
-      Generated by KSH SUPERVISOR SYSTEM for Community Hospital Nurse Supervisors
-    </div>
+    <div class="text-center mt-5 text-muted small d-none d-print-block">Generated by KSH SUPERVISOR SYSTEM for Community Hospital Nurse Supervisors</div>
   </div>
 
   <div id="formSection" style="display:none;">
@@ -835,8 +672,11 @@
   var allData = [];
   var dashboardChart = null;
 
+  // -- ระบบบันทึกเหตุการณ์ (Events Data) --
+  let eventDept = 'ER';
+  let eventLinks = JSON.parse(localStorage.getItem('ksh_events')) || [];
+
   $(document).ready(function() { 
-    // โหลดหน้า Dashboard เป็นหน้าแรกสุด (Home)
     showDashboard(); 
     loadTableData(); 
     fetchDropdowns(); 
@@ -863,42 +703,115 @@
 
   // ---- Navigation Logic ----
   function hideAllSections() {
-    $('#tableSection, #dashboardSection, #handoutSection, #formSection').hide();
+    $('#tableSection, #dashboardSection, #handoutSection, #formSection, #eventSection').hide();
     $('.nav-link').removeClass('active');
   }
 
   function showDashboard() { 
-    hideAllSections(); 
-    $('#dashboardSection').fadeIn(200); 
-    $('#btnTabDash').addClass('active'); 
-    updateDashboardCards();
-    renderChart();
-    window.scrollTo(0,0); 
+    hideAllSections(); $('#dashboardSection').fadeIn(200); $('#btnTabDash').addClass('active'); 
+    updateDashboardCards(); renderChart(); window.scrollTo(0,0); 
   }
-
   function showForm() { 
-    hideAllSections(); 
-    $('#formSection').fadeIn(200, function() { resizeCanvas(); }); 
-    $('#btnTabForm').addClass('active'); 
-    initSelect2(); 
-    window.scrollTo(0,0); 
+    hideAllSections(); $('#formSection').fadeIn(200, function() { resizeCanvas(); }); 
+    $('#btnTabForm').addClass('active'); initSelect2(); window.scrollTo(0,0); 
   }
-
   function showTable() { 
-    hideAllSections(); 
-    $('#tableSection').fadeIn(200); 
-    $('#btnTabTable').addClass('active'); 
-    loadTableData(); 
-    window.scrollTo(0,0); 
+    hideAllSections(); $('#tableSection').fadeIn(200); $('#btnTabTable').addClass('active'); 
+    loadTableData(); window.scrollTo(0,0); 
   }
-
   function showHandout() { 
-    hideAllSections(); 
-    $('#handoutSection').fadeIn(200); 
-    $('#btnTabHandout').addClass('active'); 
+    hideAllSections(); $('#handoutSection').fadeIn(200); $('#btnTabHandout').addClass('active'); 
     window.scrollTo(0,0); 
   }
+  function showEvent() {
+    hideAllSections(); $('#eventSection').fadeIn(200); $('#btnTabEvent').addClass('active');
+    renderEvents(); window.scrollTo(0,0);
+  }
 
+  // ---- Event Link Logic ----
+  function formatThaiMonth(yyyy_mm) {
+    if(!yyyy_mm) return '';
+    const [y, m] = yyyy_mm.split('-');
+    const thaiMonths = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+    return `${thaiMonths[parseInt(m)-1]} ${parseInt(y) + 543}`;
+  }
+
+  function saveEvent(e) {
+    e.preventDefault();
+    let dept = $('#evDept').val();
+    let monthVal = $('#evMonth').val(); // ค่าจะได้เป็น YYYY-MM
+    let url = $('#evUrl').val();
+    
+    let newEvent = { id: Date.now(), dept: dept, monthVal: monthVal, url: url };
+    eventLinks.push(newEvent);
+    localStorage.setItem('ksh_events', JSON.stringify(eventLinks));
+    
+    $('#evUrl').val(''); // ล้างแค่ช่อง URL
+    Swal.fire({ icon: 'success', title: 'บันทึกปุ่มลิงก์สำเร็จ', timer: 1500, showConfirmButton: false });
+    
+    // สลับไปยังแท็บแผนกที่เพิ่งบันทึกอัตโนมัติ
+    $('#eventTabs .nav-link').removeClass('active');
+    $(`#eventTabs .nav-link:contains('${dept}')`).addClass('active');
+    eventDept = dept;
+    renderEvents();
+  }
+
+  function switchEventTab(dept, btn) {
+    eventDept = dept;
+    $('#eventTabs .nav-link').removeClass('active');
+    $(btn).addClass('active');
+    renderEvents();
+  }
+
+  function renderEvents() {
+    let container = $('#eventLinkContainer');
+    container.empty();
+    
+    let filtered = eventLinks.filter(ev => ev.dept === eventDept);
+    let sortOrder = $('#evSort').val();
+    
+    filtered.sort((a, b) => {
+      if(sortOrder === 'desc') return b.monthVal.localeCompare(a.monthVal);
+      return a.monthVal.localeCompare(b.monthVal);
+    });
+    
+    if(filtered.length === 0) {
+      container.append('<div class="col-12 text-center text-muted py-5"><i class="fas fa-folder-open fs-2 mb-2 opacity-50"></i><br>ไม่มีบันทึกเหตุการณ์ในแผนกนี้</div>');
+      return;
+    }
+    
+    filtered.forEach(ev => {
+      let label = formatThaiMonth(ev.monthVal);
+      let btnHTML = `
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="position-relative">
+            <a href="${ev.url}" target="_blank" class="btn btn-outline-primary w-100 d-flex flex-column align-items-center justify-content-center py-3 shadow-sm bg-white" style="border-radius: 12px; border-color: #dbeafe;">
+              <i class="fas fa-external-link-alt mb-2 fs-4" style="color: #6f42c1;"></i>
+              <span class="fw-bold text-dark" style="font-size: 0.95rem;">${label}</span>
+            </a>
+            <button onclick="deleteEvent(${ev.id})" class="btn btn-sm btn-danger position-absolute shadow" style="top: -8px; right: -8px; border-radius: 50%; width: 26px; height: 26px; padding: 0; display:flex; align-items:center; justify-content:center;">
+              <i class="fas fa-times" style="font-size: 11px;"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      container.append(btnHTML);
+    });
+  }
+
+  function deleteEvent(id) {
+    Swal.fire({
+      title: 'ลบปุ่มลิงก์นี้?', text: 'คุณจะไม่สามารถกู้คืนได้', icon: 'warning', showCancelButton: true, confirmButtonColor: '#dc3545', confirmButtonText: 'ลบ', cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        eventLinks = eventLinks.filter(ev => ev.id !== id);
+        localStorage.setItem('ksh_events', JSON.stringify(eventLinks));
+        renderEvents();
+      }
+    });
+  }
+
+  // ---- Form Helper Logic ----
   function initSelect2() { $('.select2-input').select2({ theme: 'bootstrap-5', width: '100%', placeholder: 'เลือก...', allowClear: true, dropdownAutoWidth: true }); }
   function resetForm() { document.getElementById('mainForm').reset(); $('#recId').val(''); $('.select2-input').val(null).trigger('change'); clearSignature(); }
 
