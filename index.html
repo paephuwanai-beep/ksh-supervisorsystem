@@ -51,11 +51,6 @@
       .nav-pills .nav-link.active { background: #eef2ff !important; color: var(--primary-color) !important; box-shadow: none !important; font-weight: 700; }
     }
 
-    /* Quick Launch Menu in Home */
-    .quick-menu-btn { background: white; border-radius: 15px; padding: 15px 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; width: 100%; transition: all 0.2s; color: #555; font-weight: 600;}
-    .quick-menu-btn:hover, .quick-menu-btn:active { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); background: #fafafa;}
-    .quick-menu-btn i { font-size: 2rem; margin-bottom: 8px; display: block;}
-
     .custom-card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); background: white; margin-bottom: 20px; overflow: hidden; }
     .card-title-bar { background: #fff; padding: 12px 18px; font-weight: 600; font-size: 1.05rem; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; color: var(--primary-color); }
     .card-title-bar i { margin-right: 10px; font-size: 1.2rem; opacity: 0.8; }
@@ -195,27 +190,6 @@
 
   <div id="dashboardSection">
     <div id="pdfDashboardArea">
-      
-      <div class="row g-3 mb-4 print-hide">
-        <div class="col-4">
-          <button class="quick-menu-btn text-center" onclick="showForm()">
-            <i class="fas fa-plus-circle" style="color: #6f42c1;"></i>
-            <span class="d-block" style="font-size: 0.85rem;">บันทึกเวร</span>
-          </button>
-        </div>
-        <div class="col-4">
-          <button class="quick-menu-btn text-center" onclick="showTable()">
-            <i class="fas fa-list-ul" style="color: #1e3c72;"></i>
-            <span class="d-block" style="font-size: 0.85rem;">ประวัติ</span>
-          </button>
-        </div>
-        <div class="col-4">
-          <button class="quick-menu-btn text-center" onclick="showHandout()">
-            <i class="fas fa-book-medical" style="color: #10b981;"></i>
-            <span class="d-block" style="font-size: 0.85rem;">คู่มือ</span>
-          </button>
-        </div>
-      </div>
 
       <div class="row g-3 mb-4">
         <div class="col-6 col-md-3">
