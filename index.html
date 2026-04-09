@@ -109,6 +109,7 @@
     .ho-bg { background-color: var(--bg-light); font-family: 'Sarabun', sans-serif; }
     .ho-header { background: linear-gradient(to right, #1e40af, #0f766e); color: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;}
     .ho-card { background: white; border-radius: 1rem; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; height: 100%; transition: box-shadow 0.3s; position: relative;}
+    .ho-card:hover { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); }
     .ho-card-header { padding: 1rem; display: flex; align-items: center; gap: 0.75rem; }
     .ho-icon-box { background: white; padding: 0.5rem; border-radius: 0.75rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); display: flex; justify-content: center; align-items: center; width: 3rem; height: 3rem; font-size: 1.5rem;}
     .ho-module-badge { font-size: 0.75rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -186,8 +187,8 @@
   <ul class="nav nav-pills nav-fill mb-3 d-flex flex-row print-hide" id="mainNav">
     <li class="nav-item flex-fill"><button class="nav-link active" onclick="showDashboard()" id="btnTabDash"><i class="fas fa-home"></i><span class="d-md-inline d-none"> Home</span></button></li>
     <li class="nav-item flex-fill"><button class="nav-link" onclick="showForm()" id="btnTabForm"><i class="fas fa-plus-circle"></i> บันทึกเวร</button></li>
-    <li class="nav-item flex-fill"><button class="nav-link" onclick="showEvent()" id="btnTabEvent"><i class="fas fa-clipboard-list"></i> เหตุการณ์</button></li>
     <li class="nav-item flex-fill"><button class="nav-link" onclick="showTable()" id="btnTabTable"><i class="fas fa-list-ul"></i> ประวัติ</button></li>
+    <li class="nav-item flex-fill"><button class="nav-link" onclick="showEvent()" id="btnTabEvent"><i class="fas fa-clipboard-list"></i> เหตุการณ์</button></li>
     <li class="nav-item flex-fill"><button class="nav-link" onclick="showHandout()" id="btnTabHandout"><i class="fas fa-book-medical"></i> คู่มือ</button></li>
   </ul>
 
@@ -202,15 +203,15 @@
           </button>
         </div>
         <div class="col-3">
-          <button class="quick-menu-btn text-center" onclick="showEvent()">
-            <i class="fas fa-clipboard-list" style="color: #e83e8c;"></i>
-            <span class="d-block" style="font-size: 0.75rem;">เหตุการณ์</span>
-          </button>
-        </div>
-        <div class="col-3">
           <button class="quick-menu-btn text-center" onclick="showTable()">
             <i class="fas fa-list-ul" style="color: #1e3c72;"></i>
             <span class="d-block" style="font-size: 0.75rem;">ประวัติ</span>
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="quick-menu-btn text-center" onclick="showEvent()">
+            <i class="fas fa-clipboard-list" style="color: #e83e8c;"></i>
+            <span class="d-block" style="font-size: 0.75rem;">เหตุการณ์</span>
           </button>
         </div>
         <div class="col-3">
@@ -739,17 +740,16 @@
   function saveEvent(e) {
     e.preventDefault();
     let dept = $('#evDept').val();
-    let monthVal = $('#evMonth').val(); // ค่าจะได้เป็น YYYY-MM
+    let monthVal = $('#evMonth').val();
     let url = $('#evUrl').val();
     
     let newEvent = { id: Date.now(), dept: dept, monthVal: monthVal, url: url };
     eventLinks.push(newEvent);
     localStorage.setItem('ksh_events', JSON.stringify(eventLinks));
     
-    $('#evUrl').val(''); // ล้างแค่ช่อง URL
+    $('#evUrl').val(''); 
     Swal.fire({ icon: 'success', title: 'บันทึกปุ่มลิงก์สำเร็จ', timer: 1500, showConfirmButton: false });
     
-    // สลับไปยังแท็บแผนกที่เพิ่งบันทึกอัตโนมัติ
     $('#eventTabs .nav-link').removeClass('active');
     $(`#eventTabs .nav-link:contains('${dept}')`).addClass('active');
     eventDept = dept;
