@@ -18,34 +18,29 @@
   <style>
     :root { --primary-color: #1e3c72; --secondary-color: #2a5298; --accent-color: #6f42c1; --bg-light: #f4f6f9; }
     body { font-family: 'Sarabun', sans-serif; background-color: var(--bg-light); color: #333; padding-bottom: 85px; }
-    .app-header { background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color: white; padding: 30px 15px 50px 15px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; margin-bottom: -25px; }
+    .app-header { background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color: white; padding: 30px 15px 50px 15px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; margin-bottom: -25px; text-align: center; }
     .container-main { max-width: 1100px; margin: 0 auto; padding: 0 10px; position: relative; z-index: 10; }
     
-    /* Navigation Bar */
     .nav-pills { background: white; border-radius: 15px; padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
     .nav-link { color: #555; font-weight: 600; border-radius: 12px; padding: 12px; border: none; width: 100%; transition: 0.3s; }
     .nav-link.active { background: var(--primary-color) !important; color: white !important; }
     
-    /* Mobile View */
     @media (max-width: 767px) {
       .nav-pills { position: fixed; bottom: 0; left: 0; right: 0; border-radius: 20px 20px 0 0; margin-bottom: 0; z-index: 1030; display: flex; box-shadow: 0 -4px 10px rgba(0,0,0,0.1); background: white; }
       .nav-link { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; padding: 8px 0; background: transparent !important; color: #6c757d !important; }
       .nav-link i { font-size: 1.3rem; margin-bottom: 4px; }
       .nav-link.active { color: var(--primary-color) !important; background: #eef2ff !important; }
     }
-
-    /* Desktop View Control */
     @media (min-width: 768px) { .home-quick-menu { display: none !important; } }
+    
     .quick-menu-btn { background: white; border-radius: 15px; padding: 15px 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; width: 100%; color: #555; font-weight: 600; border: none; }
-
-    /* Dashboard & Event Interaction */
     .dash-card { border-radius: 15px; padding: 20px; color: white; display: flex; flex-direction: column; justify-content: center; min-height: 110px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .bg-blue-light { background: #f0f4f8; color: #1e3c72; border: 1px solid #d9e2ec; }
     .bg-orange { background: linear-gradient(135deg, #ff9966, #ff5e62); }
     .bg-green { background: linear-gradient(135deg, #11998e, #38ef7d); }
     .bg-purple { background: linear-gradient(135deg, #7F00FF, #E100FF); }
 
-    .event-link-card { display: flex; flex-direction: column; align-items: center; padding: 20px; background: white; border: 2.2px solid #eef2ff; border-radius: 18px; text-decoration: none !important; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .event-link-card { display: flex; flex-direction: column; align-items: center; padding: 20px; background: white; border: 2.5px solid #eef2ff; border-radius: 18px; text-decoration: none !important; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     .event-link-card:hover { transform: translateY(-10px); border-color: var(--primary-color); box-shadow: 0 15px 30px rgba(30, 60, 114, 0.15) !important; background: #fdfdff; }
     .btn-del-event { position: absolute; top: -5px; right: -5px; width: 26px; height: 26px; background: #ff4757; color: white; border: none; border-radius: 50%; font-size: 12px; opacity: 0; transition: 0.2s; z-index: 5; }
     .event-btn-wrapper:hover .btn-del-event { opacity: 1; }
@@ -61,7 +56,7 @@
   <h5 class="mt-3 text-primary fw-bold">กำลังเชื่อมต่อฐานข้อมูล...</h5>
 </div>
 
-<div class="app-header text-center print-hide">
+<div class="app-header print-hide">
   <h2 class="mb-2"><i class="fas fa-user-shield"></i> KSH SUPERVISOR SYSTEM</h2>
   <p class="mb-3 opacity-75 small">ระบบบันทึกและรายงานประจำเวรพยาบาลตรวจการนอกเวลา</p>
 </div>
@@ -84,17 +79,15 @@
     </div>
     <div class="row g-3 mb-4">
       <div class="col-6 col-md-3"><div class="dash-card bg-blue-light"><small>วันที่</small><div id="dash_date" class="fw-bold fs-6">-</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-orange"><small>Refer รวม</small><div id="dash_refer" class="fw-bold fs-2">0</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-green"><small>IPD รวม</small><div id="dash_ipd" class="fw-bold fs-2">0</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-purple"><small>ER รวม</small><div id="dash_er" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-orange"><small>Refer (ล่าสุด)</small><div id="dash_refer" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-green"><small>IPD (ล่าสุด)</small><div id="dash_ipd" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-purple"><small>ER (ล่าสุด)</small><div id="dash_er" class="fw-bold fs-2">0</div></div></div>
     </div>
-    <div class="custom-card p-4">
-       <canvas id="mainDashboardChart" style="max-height: 350px;"></canvas>
-    </div>
+    <div class="custom-card p-4"><canvas id="mainDashboardChart" style="max-height: 350px;"></canvas></div>
   </div>
 
   <div id="eventSection" style="display:none;">
-    <div class="custom-card p-4 mb-4">
+    <div class="custom-card p-4 mb-4 shadow-sm">
       <h5 class="fw-bold mb-3"><i class="fas fa-link text-danger"></i> เพิ่มลิงก์เหตุการณ์</h5>
       <form onsubmit="saveEvent(event)" class="row g-3 align-items-end">
         <div class="col-md-3"><label class="form-label small fw-bold">แผนก</label><select class="form-select" id="evDept"><option value="ER">ER</option><option value="LR">LR</option><option value="IPDหญิง">IPD หญิง</option><option value="IPDชาย">IPD ชาย</option></select></div>
@@ -114,23 +107,24 @@
     </div>
   </div>
 
-  <div id="tableSection" style="display:none;"><div class="custom-card p-4"><div class="table-responsive"><table id="dataTable" class="table table-hover w-100"><thead><tr><th>วันที่</th><th>ผู้ตรวจการ</th><th>ไฟล์</th><th>จัดการ</th></tr></thead><tbody></tbody></table></div></div></div>
-  <div id="handoutSection" style="display:none;"><div class="text-center py-5">คู่มือพยาบาลตรวจการ (Module)</div></div>
-  <div id="formSection" style="display:none;"><div class="text-center py-5">ระบบบันทึกเวรใหม่</div></div>
+  <div id="tableSection" style="display:none;">
+    <div class="custom-card p-4"><div class="table-responsive"><table id="dataTable" class="table table-hover w-100"><thead><tr><th>วันที่</th><th>ผู้ตรวจการ</th><th>ไฟล์</th></tr></thead><tbody></tbody></table></div></div>
+  </div>
+
+  <div id="handoutSection" style="display:none;"><div class="text-center py-5">คู่มือพยาบาลตรวจการ</div></div>
+  <div id="formSection" style="display:none;"><div class="text-center py-5">ระบบบันทึกเวรกำลังโหลด...</div></div>
 </div>
 
 <script>
-  // 🔗 ลิงก์ API ตัวใหม่ของคุณใส่ให้แล้วครับ
-  const API_URL = "https://script.google.com/macros/s/AKfycbxpWYvefH9QYrJc5CADWVbbGsShV-JLFdmnLVOYRejGAx2NQfbAL4HBrmemV98q_zbV/exec"; 
+  // บรรทัดที่ 462: ใส่ URL ล่าสุดของคุณที่นี่ครับ
+  const API_URL = "https://script.google.com/macros/s/AKfycbwLEBU1Ufs2F97tUEn5Jdsiry6q283qWVa-di6oWOckN_6uzQGTlFUrrOcVRszB3Ie9/exec"; 
 
   let allData = [];
   let allEvents = [];
   let currentDept = 'ER';
   let myChart = null;
 
-  $(document).ready(function() { 
-    init();
-  });
+  $(document).ready(function() { init(); });
 
   async function init() {
     $('#loadingOverlay').css('display', 'flex');
@@ -164,7 +158,7 @@
 
   function updateDashboard() {
     $('#dash_date').text(new Date().toLocaleDateString('th-TH', {year:'numeric', month:'short', day:'numeric'}));
-    if(allData.length > 0) {
+    if(allData && allData.length > 0) {
       let latest = allData[allData.length-1].fullData;
       $('#dash_refer').text(latest[63] || 0);
       $('#dash_ipd').text((Number(latest[43])||0) + (Number(latest[57])||0));
@@ -176,11 +170,13 @@
   function renderChart() {
     const ctx = document.getElementById('mainDashboardChart').getContext('2d');
     if(myChart) myChart.destroy();
-    let labels = allData.slice(-7).map(d => d.dateFormatted);
-    let erData = allData.slice(-7).map(d => Number(d.fullData[15]) || 0);
+    let last7 = allData.slice(-7);
     myChart = new Chart(ctx, {
       type: 'bar',
-      data: { labels: labels, datasets: [{ label: 'ผู้ป่วย ER', data: erData, backgroundColor: '#7F00FF' }] },
+      data: {
+        labels: last7.map(d => d.dateFormatted),
+        datasets: [{ label: 'ผู้ป่วย ER', data: last7.map(d => Number(d.fullData[15]) || 0), backgroundColor: '#7F00FF' }]
+      },
       options: { responsive: true, maintainAspectRatio: false }
     });
   }
@@ -188,20 +184,18 @@
   function renderTable() {
     let tbody = $('#dataTable tbody').empty();
     allData.forEach(r => {
-      tbody.append(`<tr><td>${r.dateFormatted}</td><td>${r.supervisor}</td><td><a href="${r.fullData[89]}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="fas fa-file-pdf"></i></a></td><td>-</td></tr>`);
+      tbody.append(`<tr><td>${r.dateFormatted}</td><td>${r.supervisor}</td><td><a href="${r.fullData[89]}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="fas fa-file-pdf"></i></a></td></tr>`);
     });
     if(!$.fn.DataTable.isDataTable('#dataTable')) $('#dataTable').DataTable({"order":[[0,"desc"]]});
   }
 
   function formatThai(monthVal) {
     if(!monthVal || monthVal == "undefined") return "ไม่ระบุเดือน";
-    try {
-      const parts = monthVal.split('-');
-      const m = parseInt(parts[1]);
-      const y = parseInt(parts[0]) + 543;
-      const months = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
-      return `เดือน${months[m-1]} ${y}`;
-    } catch(e) { return "รูปแบบวันที่ผิด"; }
+    const parts = monthVal.split('-');
+    const m = parseInt(parts[1]);
+    const y = parseInt(parts[0]) + 543;
+    const months = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+    return `เดือน${months[m-1]} ${y}`;
   }
 
   async function saveEvent(e) {
@@ -224,11 +218,7 @@
   function renderEvents() {
     let container = $('#eventLinkContainer').empty();
     let filtered = allEvents.filter(ev => ev.dept === currentDept);
-    filtered.sort((a,b) => b.monthVal.localeCompare(a.monthVal));
-    if(filtered.length === 0) {
-      container.append('<div class="col-12 text-center text-muted py-5">ยังไม่มีบันทึกในแผนกนี้</div>');
-      return;
-    }
+    if(filtered.length === 0) { container.append('<div class="col-12 text-center text-muted py-5">ไม่มีข้อมูล</div>'); return; }
     filtered.forEach(ev => {
       container.append(`
         <div class="col-6 col-md-4 col-lg-3 event-btn-wrapper position-relative">
@@ -236,7 +226,6 @@
           <a href="${ev.url}" target="_blank" class="event-link-card shadow-sm">
             <i class="fas fa-file-invoice fs-1 mb-2 text-primary"></i>
             <div class="btn-label text-center">${formatThai(ev.monthVal)}</div>
-            <small class="text-muted mt-2">คลิกเปิดบันทึก</small>
           </a>
         </div>
       `);
