@@ -17,31 +17,38 @@
 
   <style>
     :root { --primary-color: #1e3c72; --secondary-color: #2a5298; --accent-color: #6f42c1; --bg-light: #f4f6f9; }
-    body { font-family: 'Sarabun', sans-serif; background-color: var(--bg-light); color: #333; padding-bottom: 80px; }
+    body { font-family: 'Sarabun', sans-serif; background-color: var(--bg-light); color: #333; padding-bottom: 85px; }
     .app-header { background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color: white; padding: 30px 15px 50px 15px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; margin-bottom: -25px; }
     .container-main { max-width: 1100px; margin: 0 auto; padding: 0 10px; position: relative; z-index: 10; }
+    
+    /* Navigation Bar */
     .nav-pills { background: white; border-radius: 15px; padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
     .nav-link { color: #555; font-weight: 600; border-radius: 12px; padding: 12px; border: none; width: 100%; transition: 0.3s; }
     .nav-link.active { background: var(--primary-color) !important; color: white !important; }
     
+    /* Mobile View */
     @media (max-width: 767px) {
-      .nav-pills { position: fixed; bottom: 0; left: 0; right: 0; border-radius: 20px 20px 0 0; margin-bottom: 0; z-index: 1030; display: flex; box-shadow: 0 -4px 10px rgba(0,0,0,0.1); }
+      .nav-pills { position: fixed; bottom: 0; left: 0; right: 0; border-radius: 20px 20px 0 0; margin-bottom: 0; z-index: 1030; display: flex; box-shadow: 0 -4px 10px rgba(0,0,0,0.1); background: white; }
       .nav-link { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; padding: 8px 0; background: transparent !important; color: #6c757d !important; }
-      .nav-link.active { color: var(--primary-color) !important; background: #eef2ff !important; }
       .nav-link i { font-size: 1.3rem; margin-bottom: 4px; }
+      .nav-link.active { color: var(--primary-color) !important; background: #eef2ff !important; }
     }
+
+    /* Desktop View Control */
     @media (min-width: 768px) { .home-quick-menu { display: none !important; } }
-    
     .quick-menu-btn { background: white; border-radius: 15px; padding: 15px 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; width: 100%; color: #555; font-weight: 600; border: none; }
+
+    /* Dashboard & Event Interaction */
     .dash-card { border-radius: 15px; padding: 20px; color: white; display: flex; flex-direction: column; justify-content: center; min-height: 110px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .bg-blue-light { background: #f0f4f8; color: #1e3c72; border: 1px solid #d9e2ec; }
     .bg-orange { background: linear-gradient(135deg, #ff9966, #ff5e62); }
     .bg-green { background: linear-gradient(135deg, #11998e, #38ef7d); }
     .bg-purple { background: linear-gradient(135deg, #7F00FF, #E100FF); }
 
-    .event-link-card { display: flex; flex-direction: column; align-items: center; padding: 20px; background: white; border: 2.5px solid #eef2ff; border-radius: 18px; text-decoration: none !important; transition: all 0.3s; }
-    .event-link-card:hover { transform: translateY(-8px); border-color: var(--primary-color); box-shadow: 0 15px 30px rgba(30, 60, 114, 0.15) !important; background: #fdfdff; }
-    .btn-del-event { position: absolute; top: -5px; right: -5px; width: 28px; height: 28px; background: #ff4757; color: white; border: none; border-radius: 50%; font-size: 12px; z-index: 5; }
+    .event-link-card { display: flex; flex-direction: column; align-items: center; padding: 20px; background: white; border: 2.2px solid #eef2ff; border-radius: 18px; text-decoration: none !important; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .event-link-card:hover { transform: translateY(-10px); border-color: var(--primary-color); box-shadow: 0 15px 30px rgba(30, 60, 114, 0.15) !important; background: #fdfdff; }
+    .btn-del-event { position: absolute; top: -5px; right: -5px; width: 26px; height: 26px; background: #ff4757; color: white; border: none; border-radius: 50%; font-size: 12px; opacity: 0; transition: 0.2s; z-index: 5; }
+    .event-btn-wrapper:hover .btn-del-event { opacity: 1; }
 
     .custom-card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); background: white; margin-bottom: 20px; overflow: hidden; }
     #loadingOverlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.9); z-index:9999; flex-direction:column; justify-content:center; align-items:center; }
@@ -87,7 +94,7 @@
   </div>
 
   <div id="eventSection" style="display:none;">
-    <div class="custom-card p-4 mb-4 shadow-sm">
+    <div class="custom-card p-4 mb-4">
       <h5 class="fw-bold mb-3"><i class="fas fa-link text-danger"></i> เพิ่มลิงก์เหตุการณ์</h5>
       <form onsubmit="saveEvent(event)" class="row g-3 align-items-end">
         <div class="col-md-3"><label class="form-label small fw-bold">แผนก</label><select class="form-select" id="evDept"><option value="ER">ER</option><option value="LR">LR</option><option value="IPDหญิง">IPD หญิง</option><option value="IPDชาย">IPD ชาย</option></select></div>
@@ -107,13 +114,13 @@
     </div>
   </div>
 
-  <div id="tableSection" style="display:none;"><div class="custom-card p-4 text-center py-5">ระบบกำลังโหลดข้อมูลประวัติ...</div></div>
-  <div id="handoutSection" style="display:none;"><div class="custom-card p-4 text-center py-5">คู่มือพยาบาลตรวจการ</div></div>
-  <div id="formSection" style="display:none;"><div class="custom-card p-4 text-center py-5">ระบบบันทึกเวรกำลังโหลด...</div></div>
+  <div id="tableSection" style="display:none;"><div class="custom-card p-4"><div class="table-responsive"><table id="dataTable" class="table table-hover w-100"><thead><tr><th>วันที่</th><th>ผู้ตรวจการ</th><th>ไฟล์</th><th>จัดการ</th></tr></thead><tbody></tbody></table></div></div></div>
+  <div id="handoutSection" style="display:none;"><div class="text-center py-5">คู่มือพยาบาลตรวจการ (Module)</div></div>
+  <div id="formSection" style="display:none;"><div class="text-center py-5">ระบบบันทึกเวรใหม่</div></div>
 </div>
 
 <script>
-  // URL ใหม่ที่คุณให้มา
+  // 🔗 ลิงก์ API ตัวใหม่ของคุณใส่ให้แล้วครับ
   const API_URL = "https://script.google.com/macros/s/AKfycbxpWYvefH9QYrJc5CADWVbbGsShV-JLFdmnLVOYRejGAx2NQfbAL4HBrmemV98q_zbV/exec"; 
 
   let allData = [];
@@ -137,7 +144,7 @@
     try {
       let res = await fetch(API_URL + "?action=getAllRecords");
       allData = await res.json();
-    } catch(e) { console.error("Data error", e); }
+    } catch(e) { console.error(e); }
   }
 
   async function loadEvents() {
@@ -145,14 +152,14 @@
       let res = await fetch(API_URL + "?action=getEvents");
       allEvents = await res.json();
       renderEvents();
-    } catch(e) { console.error("Event error", e); }
+    } catch(e) { console.error(e); }
   }
 
   function hideAll() { $('#tableSection, #dashboardSection, #handoutSection, #formSection, #eventSection').hide(); $('.nav-link').removeClass('active'); }
   function showDashboard() { hideAll(); $('#dashboardSection').fadeIn(200); $('#btnTabDash').addClass('active'); updateDashboard(); }
   function showEvent() { hideAll(); $('#eventSection').fadeIn(200); $('#btnTabEvent').addClass('active'); renderEvents(); }
+  function showTable() { hideAll(); $('#tableSection').fadeIn(200); $('#btnTabTable').addClass('active'); renderTable(); }
   function showForm() { hideAll(); $('#formSection').fadeIn(200); $('#btnTabForm').addClass('active'); }
-  function showTable() { hideAll(); $('#tableSection').fadeIn(200); $('#btnTabTable').addClass('active'); }
   function showHandout() { hideAll(); $('#handoutSection').fadeIn(200); $('#btnTabHandout').addClass('active'); }
 
   function updateDashboard() {
@@ -176,6 +183,14 @@
       data: { labels: labels, datasets: [{ label: 'ผู้ป่วย ER', data: erData, backgroundColor: '#7F00FF' }] },
       options: { responsive: true, maintainAspectRatio: false }
     });
+  }
+
+  function renderTable() {
+    let tbody = $('#dataTable tbody').empty();
+    allData.forEach(r => {
+      tbody.append(`<tr><td>${r.dateFormatted}</td><td>${r.supervisor}</td><td><a href="${r.fullData[89]}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="fas fa-file-pdf"></i></a></td><td>-</td></tr>`);
+    });
+    if(!$.fn.DataTable.isDataTable('#dataTable')) $('#dataTable').DataTable({"order":[[0,"desc"]]});
   }
 
   function formatThai(monthVal) {
@@ -211,12 +226,12 @@
     let filtered = allEvents.filter(ev => ev.dept === currentDept);
     filtered.sort((a,b) => b.monthVal.localeCompare(a.monthVal));
     if(filtered.length === 0) {
-      container.append('<div class="col-12 text-center text-muted py-5">ยังไม่มีข้อมูล</div>');
+      container.append('<div class="col-12 text-center text-muted py-5">ยังไม่มีบันทึกในแผนกนี้</div>');
       return;
     }
     filtered.forEach(ev => {
       container.append(`
-        <div class="col-6 col-md-4 col-lg-3 position-relative">
+        <div class="col-6 col-md-4 col-lg-3 event-btn-wrapper position-relative">
           <button onclick="deleteEvent('${ev.id}')" class="btn-del-event shadow-sm"><i class="fas fa-times"></i></button>
           <a href="${ev.url}" target="_blank" class="event-link-card shadow-sm">
             <i class="fas fa-file-invoice fs-1 mb-2 text-primary"></i>
