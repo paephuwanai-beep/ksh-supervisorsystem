@@ -11,7 +11,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
   
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -26,41 +25,34 @@
     .app-header { background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color: white; padding: 30px 15px 50px 15px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; margin-bottom: -25px; text-align: center; }
     .container-main { max-width: 1100px; margin: 0 auto; padding: 0 10px; position: relative; z-index: 10; }
     
-    /* Navigation Bar */
     .nav-pills { background: white; border-radius: 15px; padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
-    .nav-link { color: #555; font-weight: 600; border-radius: 12px; padding: 12px; border: none; width: 100%; transition: 0.3s; }
+    .nav-link { color: #555; font-weight: 600; border-radius: 12px; padding: 12px; border: none; width: 100%; transition: 0.3s; cursor: pointer; }
     .nav-link.active { background: var(--primary-color) !important; color: white !important; }
     
     @media (max-width: 767px) {
       .nav-pills { position: fixed; bottom: 0; left: 0; right: 0; border-radius: 20px 20px 0 0; margin-bottom: 0; z-index: 1030; display: flex; box-shadow: 0 -4px 10px rgba(0,0,0,0.1); background: white; }
       .nav-link { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; padding: 8px 0; background: transparent !important; color: #6c757d !important; }
-      .nav-link i { font-size: 1.3rem; margin-bottom: 4px; }
       .nav-link.active { color: var(--primary-color) !important; background: #eef2ff !important; }
+      .nav-link i { font-size: 1.3rem; margin-bottom: 4px; }
+      .home-quick-menu { display: flex !important; }
     }
-
+    
     @media (min-width: 768px) { .home-quick-menu { display: none !important; } }
+    
     .quick-menu-btn { background: white; border-radius: 15px; padding: 15px 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; width: 100%; color: #555; font-weight: 600; border: none; }
-
-    /* Dashboard & Event UI */
     .dash-card { border-radius: 15px; padding: 20px; color: white; display: flex; flex-direction: column; justify-content: center; min-height: 110px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .bg-blue-light { background: #f0f4f8; color: #1e3c72; border: 1px solid #d9e2ec; }
     .bg-orange { background: linear-gradient(135deg, #ff9966, #ff5e62); }
     .bg-green { background: linear-gradient(135deg, #11998e, #38ef7d); }
     .bg-purple { background: linear-gradient(135deg, #7F00FF, #E100FF); }
 
-    .event-link-card { display: flex; flex-direction: column; align-items: center; padding: 20px; background: white; border: 2.2px solid #eef2ff; border-radius: 18px; text-decoration: none !important; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-    .event-link-card:hover { transform: translateY(-10px); border-color: var(--primary-color); box-shadow: 0 15px 30px rgba(30, 60, 114, 0.15) !important; background: #fdfdff; }
-    .btn-del-event { position: absolute; top: -5px; right: -5px; width: 26px; height: 26px; background: #ff4757; color: white; border: none; border-radius: 50%; font-size: 12px; opacity: 0; transition: 0.2s; z-index: 5; }
-    .event-btn-wrapper:hover .btn-del-event { opacity: 1; }
-
     .custom-card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); background: white; margin-bottom: 20px; overflow: hidden; }
     .card-title-bar { background: #fff; padding: 12px 18px; font-weight: 600; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; color: var(--primary-color); }
+    .card-body-custom { padding: 15px; }
     #loadingOverlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.9); z-index:9999; flex-direction:column; justify-content:center; align-items:center; }
     
-    /* Hand-out Modules */
-    .ho-bg { background-color: var(--bg-light); }
-    .ho-header { background: linear-gradient(to right, #1e40af, #0f766e); color: white; padding: 2rem; border-radius: 20px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .ho-card { background: white; border-radius: 1rem; overflow: hidden; display: flex; flex-direction: column; height: 100%; border-top: 4px solid #ddd; }
+    .event-link-card { display: flex; flex-direction: column; align-items: center; padding: 20px; background: white; border: 2.2px solid #eef2ff; border-radius: 18px; text-decoration: none !important; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .event-link-card:hover { transform: translateY(-10px); border-color: var(--primary-color); box-shadow: 0 15px 30px rgba(30, 60, 114, 0.15) !important; background: #fdfdff; }
   </style>
 </head>
 <body>
@@ -72,10 +64,13 @@
 
 <div class="app-header print-hide">
   <h2 class="mb-2"><i class="fas fa-user-shield"></i> KSH SUPERVISOR SYSTEM</h2>
-  <p class="mb-3 opacity-75 small">ระบบบันทึกและรายงานประจำเวรพยาบาลตรวจการนอกเวลา</p>
+  <p class="mb-2 opacity-75 small">ระบบบันทึกและรายงานประจำเวรพยาบาลตรวจการนอกเวลา</p>
+  <button class="btn btn-sm btn-light rounded-pill" onclick="window.open('https://docs.google.com/spreadsheets/d/1O5r_mH2z17X-zXW_u-gR7mI0iN9r7C0-3W8O_7N-mS8/edit', '_blank')">
+    <i class="fas fa-database me-1"></i> Google Sheet Database
+  </button>
 </div>
 
-<div class="container-main">
+<div class="container-main mt-4">
   <ul class="nav nav-pills nav-fill mb-3 print-hide" id="mainNav">
     <li class="nav-item"><button class="nav-link active" onclick="showDashboard()" id="btnTabDash"><i class="fas fa-home"></i><span class="d-md-inline d-none"> Home</span></button></li>
     <li class="nav-item"><button class="nav-link" onclick="showForm()" id="btnTabForm"><i class="fas fa-plus-circle"></i> บันทึกเวร</button></li>
@@ -85,7 +80,7 @@
   </ul>
 
   <div id="dashboardSection">
-    <div class="row g-2 mb-4 home-quick-menu">
+    <div class="row g-2 mb-4 home-quick-menu" style="display:none;">
       <div class="col-3"><button class="quick-menu-btn" onclick="showForm()"><i class="fas fa-plus-circle" style="color: #6f42c1;"></i><small>บันทึกเวร</small></button></div>
       <div class="col-3"><button class="quick-menu-btn" onclick="showTable()"><i class="fas fa-list-ul" style="color: #1e3c72;"></i><small>ประวัติ</small></button></div>
       <div class="col-3"><button class="quick-menu-btn" onclick="showEvent()"><i class="fas fa-clipboard-list" style="color: #e83e8c;"></i><small>เหตุการณ์</small></button></div>
@@ -93,9 +88,9 @@
     </div>
     <div class="row g-3 mb-4">
       <div class="col-6 col-md-3"><div class="dash-card bg-blue-light"><small>วันที่</small><div id="dash_date" class="fw-bold fs-6">-</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-orange"><small>Refer (ล่าสุด)</small><div id="dash_refer" class="fw-bold fs-2">0</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-green"><small>IPD (ล่าสุด)</small><div id="dash_ipd" class="fw-bold fs-2">0</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-purple"><small>ER (ล่าสุด)</small><div id="dash_er" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-orange"><small>Refer รวม</small><div id="dash_refer" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-green"><small>IPD รวม</small><div id="dash_ipd" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-purple"><small>ER รวม</small><div id="dash_er" class="fw-bold fs-2">0</div></div></div>
     </div>
     <div class="custom-card p-4"><canvas id="mainDashboardChart" style="max-height: 350px;"></canvas></div>
   </div>
@@ -106,32 +101,21 @@
       <form id="mainForm" onsubmit="handleFormSubmit(event)">
         <div class="row g-3">
           <div class="col-md-4"><label class="form-label">วันที่</label><input type="date" class="form-control" name="ReportDate" required></div>
-          <div class="col-md-4"><label class="form-label">เวลาเริ่ม</label><input type="time" class="form-control" name="StartTime" required></div>
-          <div class="col-md-4"><label class="form-label">สิ้นสุด</label><input type="time" class="form-control" name="EndTime" required></div>
           <div class="col-md-6"><label class="form-label">ผู้ตรวจการ</label><select class="form-select select2-input" name="SupervisorName" id="supList"></select></div>
-          <div class="col-md-6"><label class="form-label">ตำแหน่ง</label><select class="form-select select2-input" name="Position" id="posList"></select></div>
-          <div class="col-md-6"><label class="form-label">แพทย์ ER</label><select class="form-select select2-input" name="DoctorER" id="docList1"></select></div>
-          <div class="col-md-6"><label class="form-label">แพทย์ Ward</label><select class="form-select select2-input" name="DoctorWard" id="docList2"></select></div>
         </div>
-        <hr>
-        <div class="signature-wrapper my-3">
-          <canvas id="signaturePad" style="width: 100%; height: 200px;"></canvas>
-          <button type="button" class="btn btn-sm btn-light position-absolute top-0 end-0 m-2" onclick="clearSignature()">ลบ</button>
-        </div>
-        <button type="submit" class="btn btn-gradient text-white w-100 py-3 fw-bold">บันทึกข้อมูล</button>
+        <button type="submit" class="btn btn-primary w-100 mt-4 py-3 fw-bold">บันทึกข้อมูล</button>
       </form>
     </div>
   </div>
 
   <div id="tableSection" style="display:none;">
-    <div class="custom-card p-4">
-      <div class="table-responsive"><table id="dataTable" class="table table-hover w-100"><thead><tr><th>วันที่</th><th>ผู้ตรวจการ</th><th>ไฟล์</th><th>จัดการ</th></tr></thead><tbody></tbody></table></div>
+    <div class="custom-card p-3">
+      <div class="table-responsive"><table id="dataTable" class="table table-hover w-100"><thead><tr><th>วันที่</th><th>ผู้ตรวจการ</th><th class="text-center">PDF</th><th class="text-center">รูป</th><th>ลบ</th></tr></thead><tbody></tbody></table></div>
     </div>
   </div>
 
   <div id="eventSection" style="display:none;">
     <div class="custom-card p-4 mb-4 shadow-sm">
-      <h5 class="fw-bold mb-3"><i class="fas fa-link text-danger"></i> เพิ่มลิงก์เหตุการณ์</h5>
       <form onsubmit="saveEvent(event)" class="row g-3 align-items-end">
         <div class="col-md-3"><label class="form-label small fw-bold">แผนก</label><select class="form-select" id="evDept"><option value="ER">ER</option><option value="LR">LR</option><option value="IPDหญิง">IPD หญิง</option><option value="IPDชาย">IPD ชาย</option></select></div>
         <div class="col-md-3"><label class="form-label small fw-bold">เดือน/ปี</label><input type="month" class="form-control" id="evMonth" required></div>
@@ -139,31 +123,14 @@
         <div class="col-md-2"><button type="submit" class="btn btn-danger w-100 fw-bold">บันทึก</button></div>
       </form>
     </div>
-    <div class="custom-card p-4">
-        <ul class="nav nav-tabs mb-4" id="eventTabs">
-          <li class="nav-item"><button class="nav-link active" onclick="switchEventTab('ER', this)">ER</button></li>
-          <li class="nav-item"><button class="nav-link" onclick="switchEventTab('LR', this)">LR</button></li>
-          <li class="nav-item"><button class="nav-link" onclick="switchEventTab('IPDหญิง', this)">IPD หญิง</button></li>
-          <li class="nav-item"><button class="nav-link" onclick="switchEventTab('IPDชาย', this)">IPD ชาย</button></li>
-        </ul>
-        <div class="row g-3" id="eventLinkContainer"></div>
-    </div>
+    <div class="row g-3" id="eventLinkContainer"></div>
   </div>
 
-  <div id="handoutSection" style="display:none;" class="ho-bg pb-5">
-    <div class="ho-header">
-      <h2 class="mb-0 fw-bold text-white"><i class="fas fa-heartbeat me-2"></i> คู่มือพยาบาลตรวจการ</h2>
-      <button onclick="window.print()" class="btn btn-light rounded-circle print-hide shadow-sm"><i class="fas fa-print"></i></button>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-6"><div class="ho-card p-4"><h5>การบริหารอัตรากำลัง</h5><small>IPD ไม่เกิน 1:4 / ER ไม่เกิน 1:3</small></div></div>
-      <div class="col-md-6"><div class="ho-card p-4"><h5>คุณภาพ/ความปลอดภัย</h5><small>Just Culture: รายงานเพื่อเรียนรู้</small></div></div>
-    </div>
-  </div>
-
+  <div id="handoutSection" style="display:none;"><div class="text-center py-5">คู่มือพยาบาลตรวจการ (Module)</div></div>
 </div>
 
 <script>
+  // 🔗 ใส่ URL ของคุณที่นี่
   const API_URL = "https://script.google.com/macros/s/AKfycbxpWYvefH9QYrJc5CADWVbbGsShV-JLFdmnLVOYRejGAx2NQfbAL4HBrmemV98q_zbV/exec"; 
 
   let allData = [];
@@ -171,47 +138,30 @@
   let currentDept = 'ER';
   let myChart = null;
 
-  $(document).ready(function() { 
-    init(); 
-    resizeCanvas();
-  });
+  $(document).ready(function() { init(); });
 
   async function init() {
     $('#loadingOverlay').css('display', 'flex');
     try {
-      await Promise.all([loadMainData(), loadEvents(), fetchDropdowns()]);
-      updateDashboard();
+      let [resData, resEvent, resDrop] = await Promise.all([
+        fetch(API_URL + "?action=getAllRecords").then(r => r.json()),
+        fetch(API_URL + "?action=getEvents").then(r => r.json()),
+        fetch(API_URL + "?action=getDropdownOptions").then(r => r.json())
+      ]);
+      allData = resData; allEvents = resEvent;
+      populateDropdowns(resDrop);
+      updateDashboard(); renderTable(); renderEvents();
     } catch(e) { console.error(e); }
     $('#loadingOverlay').hide();
   }
 
-  async function loadMainData() {
-    let res = await fetch(API_URL + "?action=getAllRecords");
-    allData = await res.json();
-    renderTable();
-  }
-
-  async function loadEvents() {
-    let res = await fetch(API_URL + "?action=getEvents");
-    allEvents = await res.json();
-    renderEvents();
-  }
-
-  async function fetchDropdowns() {
-    let res = await fetch(API_URL + "?action=getDropdownOptions");
-    let o = await res.json();
-    populateDropdowns(o);
-  }
-
-  // --- UI & Navigation ---
   function hideAll() { $('#tableSection, #dashboardSection, #handoutSection, #formSection, #eventSection').hide(); $('.nav-link').removeClass('active'); }
   function showDashboard() { hideAll(); $('#dashboardSection').fadeIn(200); $('#btnTabDash').addClass('active'); updateDashboard(); }
-  function showForm() { hideAll(); $('#formSection').fadeIn(200, function() { resizeCanvas(); }); $('#btnTabForm').addClass('active'); initSelect2(); }
-  function showTable() { hideAll(); $('#tableSection').fadeIn(200); $('#btnTabTable').addClass('active'); renderTable(); }
+  function showForm() { hideAll(); $('#formSection').fadeIn(200); $('#btnTabForm').addClass('active'); $('.select2-input').select2({ theme: 'bootstrap-5', width: '100%' }); }
+  function showTable() { hideAll(); $('#tableSection').fadeIn(200); $('#btnTabTable').addClass('active'); }
   function showEvent() { hideAll(); $('#eventSection').fadeIn(200); $('#btnTabEvent').addClass('active'); renderEvents(); }
   function showHandout() { hideAll(); $('#handoutSection').fadeIn(200); $('#btnTabHandout').addClass('active'); }
 
-  // --- Logic ---
   function updateDashboard() {
     $('#dash_date').text(new Date().toLocaleDateString('th-TH', {year:'numeric', month:'short', day:'numeric'}));
     if(allData.length > 0) {
@@ -229,10 +179,7 @@
     let last7 = allData.slice(-7);
     myChart = new Chart(ctx, {
       type: 'bar',
-      data: {
-        labels: last7.map(d => d.dateFormatted),
-        datasets: [{ label: 'ผู้ป่วย ER', data: last7.map(d => Number(d.fullData[15]) || 0), backgroundColor: '#7F00FF' }]
-      },
+      data: { labels: last7.map(d => d.dateFormatted), datasets: [{ label: 'ผู้ป่วย ER', data: last7.map(d => Number(d.fullData[15]) || 0), backgroundColor: '#7F00FF' }] },
       options: { responsive: true, maintainAspectRatio: false }
     });
   }
@@ -240,33 +187,27 @@
   function renderTable() {
     let tbody = $('#dataTable tbody').empty();
     allData.forEach(r => {
-      tbody.append(`<tr><td>${r.dateFormatted}</td><td>${r.supervisor}</td><td class="text-center"><a href="${r.fullData[89] || '#'}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="fas fa-file-pdf"></i></a></td><td class="text-end"><button class="btn btn-sm btn-warning" onclick="editRecord('${r.id}')"><i class="fas fa-pen"></i></button> <button class="btn btn-sm btn-light text-danger" onclick="deleteRecord('${r.id}')"><i class="fas fa-trash"></i></button></td></tr>`);
+      let pdfBtn = r.pdfUrl ? `<a href="${r.pdfUrl}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="fas fa-file-pdf"></i></a>` : '-';
+      let imgBtn = r.imgUrl ? `<a href="${r.imgUrl}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-image"></i></a>` : '-';
+      tbody.append(`<tr><td class="fw-bold">${r.dateFormatted}</td><td>${r.supervisor}</td><td class="text-center">${pdfBtn}</td><td class="text-center">${imgBtn}</td><td><button class="btn btn-sm text-danger" onclick="deleteRecord('${r.id}')"><i class="fas fa-trash"></i></button></td></tr>`);
     });
     if(!$.fn.DataTable.isDataTable('#dataTable') && allData.length > 0) $('#dataTable').DataTable({"order":[[0,"desc"]], "responsive": true});
   }
 
   function formatThai(monthVal) {
-    if(!monthVal) return "ไม่ระบุ";
-    const parts = monthVal.split('-');
-    const m = parseInt(parts[1]);
-    const y = parseInt(parts[0]) + 543;
+    if(!monthVal) return "ไม่ระบุเดือน";
     const months = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
-    return `เดือน${months[m-1]} ${y}`;
+    const parts = monthVal.split('-');
+    return `เดือน${months[parseInt(parts[1])-1]} ${parseInt(parts[0])+543}`;
   }
 
   function renderEvents() {
     let container = $('#eventLinkContainer').empty();
-    let filtered = allEvents.filter(ev => ev.dept === currentDept);
-    filtered.sort((a,b) => b.monthVal.localeCompare(a.monthVal));
-    if(filtered.length === 0) { container.append('<div class="col-12 text-center text-muted py-5">ยังไม่มีข้อมูล</div>'); return; }
-    filtered.forEach(ev => {
+    allEvents.filter(ev => ev.dept === currentDept).forEach(ev => {
       container.append(`
         <div class="col-6 col-md-4 col-lg-3 event-btn-wrapper position-relative">
-          <button onclick="deleteEvent('${ev.id}')" class="btn-del-event shadow-sm"><i class="fas fa-times"></i></button>
-          <a href="${ev.url}" target="_blank" class="event-link-card shadow-sm">
-            <i class="fas fa-file-invoice fs-1 mb-2 text-primary"></i>
-            <div class="btn-label text-center">${formatThai(ev.monthVal)}</div>
-          </a>
+          <button onclick="deleteEvent('${ev.id}')" class="btn-sm btn btn-danger position-absolute" style="top:-5px; right:-5px; border-radius:50%; z-index:5"><i class="fas fa-times"></i></button>
+          <a href="${ev.url}" target="_blank" class="event-link-card shadow-sm"><i class="fas fa-file-invoice mb-2 fs-2 text-primary"></i><div class="fw-bold text-dark small text-center">${formatThai(ev.monthVal)}</div></a>
         </div>
       `);
     });
@@ -277,42 +218,16 @@
     $('#loadingOverlay').show();
     let obj = { dept: $('#evDept').val(), monthVal: $('#evMonth').val(), url: $('#evUrl').val() };
     await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'addEvent', eventObject: obj }) });
-    $('#evUrl').val('');
-    await loadEvents();
-    $('#loadingOverlay').hide();
+    $('#evUrl').val(''); await loadEvents(); $('#loadingOverlay').hide();
   }
 
-  async function handleFormSubmit(e) {
-    e.preventDefault();
-    $('#loadingOverlay').show();
-    var form = document.getElementById('mainForm'); 
-    var fd = {}; new FormData(form).forEach((v, k) => fd[k] = v); 
-    await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'processForm', formObject: fd }) });
-    Swal.fire({icon: 'success', title: 'บันทึกสำเร็จ', timer: 2000, showConfirmButton: false});
-    document.getElementById('mainForm').reset();
-    await loadMainData();
-    showTable();
-    $('#loadingOverlay').hide();
+  function populateDropdowns(o) {
+    const fill = (id, list) => { let s = document.getElementById(id); if(s) { $(s).empty(); list.forEach(v => $(s).append(new Option(v,v))); } };
+    fill('supList', o.supervisors);
   }
 
-  function switchEventTab(dept, btn) { currentDept = dept; $('#eventTabs .nav-link').removeClass('active'); $(btn).addClass('active'); renderEvents(); }
-  async function deleteEvent(id) { if(confirm('ลบ?')){ await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'deleteEvent', id: id }) }); loadEvents(); }}
-  function initSelect2() { $('.select2-input').select2({ theme: 'bootstrap-5', width: '100%' }); }
-  function populateDropdowns(o) { createOpts('supList',o.supervisors); createOpts('posList',o.positions); createOpts('docList1',o.doctors); createOpts('docList2',o.doctors); fillCls('nurse-list',o.nurses); fillCls('helper-list',o.helpers); fillCls('card-list',o.cardStaff); }
-  function createOpts(id, l) { var s=document.getElementById(id); if(s) { $(s).empty(); l.forEach(v=>{var o=document.createElement('option');o.value=v;o.text=v;s.add(o)}); }}
-  function fillCls(c, l) { var ss=document.getElementsByClassName(c); for(var i=0;i<ss.length;i++){ $(ss[i]).empty(); l.forEach(v=>{var o=document.createElement('option');o.value=v;o.text=v;ss[i].add(o)}); }}
-
-  // Signature Pad
-  var canvas = document.getElementById('signaturePad'), ctx = canvas.getContext('2d'), drawing = false;
-  function resizeCanvas() { if(!canvas) return; var ratio = Math.max(window.devicePixelRatio || 1, 1); canvas.width = canvas.offsetWidth * ratio; canvas.height = canvas.offsetHeight * ratio; ctx.scale(ratio, ratio); ctx.lineWidth = 2.5; ctx.strokeStyle = "#000080"; ctx.lineCap = "round"; }
-  window.addEventListener("resize", resizeCanvas);
-  function getMousePos(canvas, evt) { var rect = canvas.getBoundingClientRect(); return { x: (evt.clientX || evt.touches[0].clientX) - rect.left, y: (evt.clientY || evt.touches[0].clientY) - rect.top }; }
-  function startDrawing(e) { drawing = true; var pos = getMousePos(canvas, e); ctx.beginPath(); ctx.moveTo(pos.x, pos.y); e.preventDefault(); }
-  function draw(e) { if (!drawing) return; var pos = getMousePos(canvas, e); ctx.lineTo(pos.x, pos.y); ctx.stroke(); e.preventDefault(); }
-  function stopDrawing(e) { drawing = false; ctx.closePath(); }
-  canvas.addEventListener('mousedown', startDrawing); canvas.addEventListener('mousemove', draw); canvas.addEventListener('mouseup', stopDrawing);
-  canvas.addEventListener('touchstart', startDrawing, {passive: false}); canvas.addEventListener('touchmove', draw, {passive: false}); canvas.addEventListener('touchend', stopDrawing);
-  function clearSignature() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+  async function deleteRecord(id) { if(confirm('ลบ?')){ await fetch(API_URL, {method:'POST', body:JSON.stringify({action:'deleteRecord', id:id})}); init(); } }
+  async function deleteEvent(id) { if(confirm('ลบ?')){ await fetch(API_URL, {method:'POST', body:JSON.stringify({action:'deleteEvent', id:id})}); loadEvents(); } }
 </script>
 </body>
 </html>
