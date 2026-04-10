@@ -22,9 +22,10 @@
   <style>
     :root { --primary-color: #1e3c72; --secondary-color: #2a5298; --accent-color: #6f42c1; --bg-light: #f4f6f9; }
     body { font-family: 'Sarabun', sans-serif; background-color: var(--bg-light); color: #333; padding-bottom: 85px; }
-    .app-header { background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color: white; padding: 30px 15px 50px 15px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; margin-bottom: -25px; text-align: center; }
+    .app-header { background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color: white; padding: 30px 15px 45px 15px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; margin-bottom: -20px; text-align: center; }
     .container-main { max-width: 1100px; margin: 0 auto; padding: 0 10px; position: relative; z-index: 10; }
     
+    /* Navigation */
     .nav-pills { background: white; border-radius: 15px; padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
     .nav-link { color: #555; font-weight: 600; border-radius: 12px; padding: 12px; border: none; width: 100%; transition: 0.3s; cursor: pointer; }
     .nav-link.active { background: var(--primary-color) !important; color: white !important; }
@@ -32,15 +33,15 @@
     @media (max-width: 767px) {
       .nav-pills { position: fixed; bottom: 0; left: 0; right: 0; border-radius: 20px 20px 0 0; margin-bottom: 0; z-index: 1030; display: flex; box-shadow: 0 -4px 10px rgba(0,0,0,0.1); background: white; }
       .nav-link { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; padding: 8px 0; background: transparent !important; color: #6c757d !important; }
-      .nav-link.active { color: var(--primary-color) !important; background: #eef2ff !important; }
       .nav-link i { font-size: 1.3rem; margin-bottom: 4px; }
+      .nav-link.active { color: var(--primary-color) !important; background: #eef2ff !important; }
       .home-quick-menu { display: flex !important; }
     }
     
     @media (min-width: 768px) { .home-quick-menu { display: none !important; } }
     
     .quick-menu-btn { background: white; border-radius: 15px; padding: 15px 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; width: 100%; color: #555; font-weight: 600; border: none; }
-    .dash-card { border-radius: 15px; padding: 20px; color: white; display: flex; flex-direction: column; justify-content: center; min-height: 110px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .dash-card { border-radius: 15px; padding: 15px; color: white; display: flex; flex-direction: column; justify-content: center; min-height: 100px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .bg-blue-light { background: #f0f4f8; color: #1e3c72; border: 1px solid #d9e2ec; }
     .bg-orange { background: linear-gradient(135deg, #ff9966, #ff5e62); }
     .bg-green { background: linear-gradient(135deg, #11998e, #38ef7d); }
@@ -49,9 +50,13 @@
     .custom-card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); background: white; margin-bottom: 20px; overflow: hidden; }
     .card-title-bar { background: #fff; padding: 12px 18px; font-weight: 600; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; color: var(--primary-color); }
     .card-body-custom { padding: 15px; }
+    .form-label { font-weight: 600; font-size: 0.85rem; color: #555; margin-bottom: 6px; }
+    .form-control, .form-select { border-radius: 10px; border: 1px solid #ddd; padding: 10px 12px; font-size: 16px; background-color: #fafafa; }
+    .signature-wrapper { border: 2px dashed #ced4da; border-radius: 10px; background-color: #fff; position: relative; overflow: hidden; }
+    #signaturePad { width: 100%; height: 200px; touch-action: none; cursor: crosshair; }
     #loadingOverlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.9); z-index:9999; flex-direction:column; justify-content:center; align-items:center; }
     
-    .event-link-card { display: flex; flex-direction: column; align-items: center; padding: 20px; background: white; border: 2.2px solid #eef2ff; border-radius: 18px; text-decoration: none !important; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .event-link-card { display: flex; flex-direction: column; align-items: center; padding: 20px; background: white; border: 2.2px solid #eef2ff; border-radius: 18px; text-decoration: none !important; transition: all 0.3s; }
     .event-link-card:hover { transform: translateY(-10px); border-color: var(--primary-color); box-shadow: 0 15px 30px rgba(30, 60, 114, 0.15) !important; background: #fdfdff; }
   </style>
 </head>
@@ -65,7 +70,7 @@
 <div class="app-header print-hide">
   <h2 class="mb-2"><i class="fas fa-user-shield"></i> KSH SUPERVISOR SYSTEM</h2>
   <p class="mb-2 opacity-75 small">ระบบบันทึกและรายงานประจำเวรพยาบาลตรวจการนอกเวลา</p>
-  <button class="btn btn-sm btn-light rounded-pill" onclick="window.open('https://docs.google.com/spreadsheets/d/1O5r_mH2z17X-zXW_u-gR7mI0iN9r7C0-3W8O_7N-mS8/edit', '_blank')">
+  <button class="btn btn-sm btn-outline-light rounded-pill" onclick="window.open('https://docs.google.com/spreadsheets/d/1O5r_mH2z17X-zXW_u-gR7mI0iN9r7C0-3W8O_7N-mS8/edit', '_blank')">
     <i class="fas fa-database me-1"></i> Google Sheet Database
   </button>
 </div>
@@ -81,56 +86,72 @@
 
   <div id="dashboardSection">
     <div class="row g-2 mb-4 home-quick-menu" style="display:none;">
-      <div class="col-3"><button class="quick-menu-btn" onclick="showForm()"><i class="fas fa-plus-circle" style="color: #6f42c1;"></i><small>บันทึกเวร</small></button></div>
-      <div class="col-3"><button class="quick-menu-btn" onclick="showTable()"><i class="fas fa-list-ul" style="color: #1e3c72;"></i><small>ประวัติ</small></button></div>
-      <div class="col-3"><button class="quick-menu-btn" onclick="showEvent()"><i class="fas fa-clipboard-list" style="color: #e83e8c;"></i><small>เหตุการณ์</small></button></div>
-      <div class="col-3"><button class="quick-menu-btn" onclick="showHandout()"><i class="fas fa-book-medical" style="color: #10b981;"></i><small>คู่มือ</small></button></div>
+      <div class="col-3"><button class="quick-menu-btn shadow-sm" onclick="showForm()"><i class="fas fa-plus-circle" style="color: #6f42c1;"></i><small>บันทึกเวร</small></button></div>
+      <div class="col-3"><button class="quick-menu-btn shadow-sm" onclick="showTable()"><i class="fas fa-list-ul" style="color: #1e3c72;"></i><small>ประวัติ</small></button></div>
+      <div class="col-3"><button class="quick-menu-btn shadow-sm" onclick="showEvent()"><i class="fas fa-clipboard-list" style="color: #e83e8c;"></i><small>เหตุการณ์</small></button></div>
+      <div class="col-3"><button class="quick-menu-btn shadow-sm" onclick="showHandout()"><i class="fas fa-book-medical" style="color: #10b981;"></i><small>คู่มือ</small></button></div>
     </div>
     <div class="row g-3 mb-4">
       <div class="col-6 col-md-3"><div class="dash-card bg-blue-light"><small>วันที่</small><div id="dash_date" class="fw-bold fs-6">-</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-orange"><small>Refer รวม</small><div id="dash_refer" class="fw-bold fs-2">0</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-green"><small>IPD รวม</small><div id="dash_ipd" class="fw-bold fs-2">0</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-purple"><small>ER รวม</small><div id="dash_er" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-orange"><small>Refer (ล่าสุด)</small><div id="dash_refer" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-green"><small>IPD (ล่าสุด)</small><div id="dash_ipd" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-purple"><small>ER (ล่าสุด)</small><div id="dash_er" class="fw-bold fs-2">0</div></div></div>
     </div>
-    <div class="custom-card p-4"><canvas id="mainDashboardChart" style="max-height: 350px;"></canvas></div>
+    <div class="custom-card p-3"><canvas id="mainDashboardChart" style="max-height: 300px;"></canvas></div>
   </div>
 
   <div id="formSection" style="display:none;">
-    <div class="custom-card p-4">
-      <h5 class="fw-bold border-bottom pb-2 mb-3">บันทึกเวรตรวจการนอกเวลา</h5>
-      <form id="mainForm" onsubmit="handleFormSubmit(event)">
+    <form id="mainForm" onsubmit="handleFormSubmit(event)">
+      <div class="custom-card"><div class="card-title-bar"><i class="fas fa-user-clock me-2"></i>ข้อมูลทั่วไป</div><div class="card-body-custom">
         <div class="row g-3">
           <div class="col-md-4"><label class="form-label">วันที่</label><input type="date" class="form-control" name="ReportDate" required></div>
+          <div class="col-md-4"><label class="form-label">เวลาเริ่ม</label><input type="time" class="form-control" name="StartTime" required></div>
+          <div class="col-md-4"><label class="form-label">สิ้นสุด</label><input type="time" class="form-control" name="EndTime" required></div>
           <div class="col-md-6"><label class="form-label">ผู้ตรวจการ</label><select class="form-select select2-input" name="SupervisorName" id="supList"></select></div>
+          <div class="col-md-6"><label class="form-label">แพทย์เวร ER</label><select class="form-select select2-input" name="DoctorER" id="docList1"></select></div>
         </div>
-        <button type="submit" class="btn btn-primary w-100 mt-4 py-3 fw-bold">บันทึกข้อมูล</button>
-      </form>
-    </div>
+      </div></div>
+      <div class="d-grid gap-2 mb-5"><button type="submit" class="btn btn-primary py-3 fw-bold fs-5 rounded-3 shadow-sm"><i class="fas fa-save me-2"></i>บันทึกข้อมูลรายงาน</button></div>
+    </form>
   </div>
 
   <div id="tableSection" style="display:none;">
     <div class="custom-card p-3">
-      <div class="table-responsive"><table id="dataTable" class="table table-hover w-100"><thead><tr><th>วันที่</th><th>ผู้ตรวจการ</th><th class="text-center">PDF</th><th class="text-center">รูป</th><th>ลบ</th></tr></thead><tbody></tbody></table></div>
+      <div class="table-responsive">
+        <table id="dataTable" class="table table-hover w-100">
+          <thead><tr><th>วันที่</th><th>ผู้ตรวจการ</th><th class="text-center">PDF</th><th class="text-center">รูป</th><th class="text-end">ลบ</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
   <div id="eventSection" style="display:none;">
-    <div class="custom-card p-4 mb-4 shadow-sm">
-      <form onsubmit="saveEvent(event)" class="row g-3 align-items-end">
-        <div class="col-md-3"><label class="form-label small fw-bold">แผนก</label><select class="form-select" id="evDept"><option value="ER">ER</option><option value="LR">LR</option><option value="IPDหญิง">IPD หญิง</option><option value="IPDชาย">IPD ชาย</option></select></div>
-        <div class="col-md-3"><label class="form-label small fw-bold">เดือน/ปี</label><input type="month" class="form-control" id="evMonth" required></div>
-        <div class="col-md-4"><label class="form-label small fw-bold">URL ลิงก์</label><input type="url" class="form-control" id="evUrl" placeholder="https://..." required></div>
-        <div class="col-md-2"><button type="submit" class="btn btn-danger w-100 fw-bold">บันทึก</button></div>
-      </form>
-    </div>
-    <div class="row g-3" id="eventLinkContainer"></div>
+    <div class="custom-card p-4 mb-4"><form onsubmit="saveEvent(event)" class="row g-3 align-items-end">
+      <div class="col-md-3"><label class="form-label small fw-bold">แผนก</label><select class="form-select" id="evDept"><option value="ER">ER</option><option value="LR">LR</option><option value="IPDหญิง">IPD หญิง</option><option value="IPDชาย">IPD ชาย</option></select></div>
+      <div class="col-md-3"><label class="form-label small fw-bold">เดือน/ปี</label><input type="month" class="form-control" id="evMonth" required></div>
+      <div class="col-md-4"><label class="form-label small fw-bold">ลิงก์ URL</label><input type="url" class="form-control" id="evUrl" placeholder="https://..." required></div>
+      <div class="col-md-2"><button type="submit" class="btn btn-danger w-100 fw-bold">บันทึก</button></div>
+    </form></div>
+    <div id="eventLinkContainer" class="row g-3"></div>
   </div>
 
-  <div id="handoutSection" style="display:none;"><div class="text-center py-5">คู่มือพยาบาลตรวจการ (Module)</div></div>
+  <div id="handoutSection" style="display:none;">
+    <div class="ho-header">
+      <h2 class="text-white mb-0 fw-bold"><i class="fas fa-heartbeat me-2"></i>คู่มือพยาบาลตรวจการ</h2>
+      <button onclick="window.print()" class="btn btn-light rounded-circle shadow-sm"><i class="fas fa-print"></i></button>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="custom-card p-4 h-100 theme-blue"><h5>การบริหารอัตรากำลัง</h5><p class="small text-muted">ประเมินภาระงานและจัดการคนให้เหมาะสม</p></div></div>
+      <div class="col-md-4"><div class="custom-card p-4 h-100 theme-orange"><h5>ฉุกเฉินและอุบัติภัยหมู่</h5><p class="small text-muted">ขั้นตอน START Triage และ MCI</p></div></div>
+      <div class="col-md-4"><div class="custom-card p-4 h-100 theme-green"><h5>คุณภาพและความปลอดภัย</h5><p class="small text-muted">HA & 2P Safety Goals</p></div></div>
+    </div>
+  </div>
+
 </div>
 
 <script>
-  // 🔗 ใส่ URL ของคุณที่นี่
+  // ⚠️ ลิงก์ API ตัวล่าสุดของคุณ
   const API_URL = "https://script.google.com/macros/s/AKfycbxpWYvefH9QYrJc5CADWVbbGsShV-JLFdmnLVOYRejGAx2NQfbAL4HBrmemV98q_zbV/exec"; 
 
   let allData = [];
@@ -138,7 +159,9 @@
   let currentDept = 'ER';
   let myChart = null;
 
-  $(document).ready(function() { init(); });
+  $(document).ready(function() { 
+    init();
+  });
 
   async function init() {
     $('#loadingOverlay').css('display', 'flex');
@@ -148,9 +171,12 @@
         fetch(API_URL + "?action=getEvents").then(r => r.json()),
         fetch(API_URL + "?action=getDropdownOptions").then(r => r.json())
       ]);
-      allData = resData; allEvents = resEvent;
+      allData = resData;
+      allEvents = resEvent;
       populateDropdowns(resDrop);
-      updateDashboard(); renderTable(); renderEvents();
+      updateDashboard();
+      renderTable();
+      renderEvents();
     } catch(e) { console.error(e); }
     $('#loadingOverlay').hide();
   }
@@ -179,7 +205,10 @@
     let last7 = allData.slice(-7);
     myChart = new Chart(ctx, {
       type: 'bar',
-      data: { labels: last7.map(d => d.dateFormatted), datasets: [{ label: 'ผู้ป่วย ER', data: last7.map(d => Number(d.fullData[15]) || 0), backgroundColor: '#7F00FF' }] },
+      data: {
+        labels: last7.map(d => d.dateFormatted),
+        datasets: [{ label: 'ผู้ป่วย ER', data: last7.map(d => Number(d.fullData[15]) || 0), backgroundColor: '#7F00FF', borderRadius: 5 }]
+      },
       options: { responsive: true, maintainAspectRatio: false }
     });
   }
@@ -189,13 +218,13 @@
     allData.forEach(r => {
       let pdfBtn = r.pdfUrl ? `<a href="${r.pdfUrl}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="fas fa-file-pdf"></i></a>` : '-';
       let imgBtn = r.imgUrl ? `<a href="${r.imgUrl}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-image"></i></a>` : '-';
-      tbody.append(`<tr><td class="fw-bold">${r.dateFormatted}</td><td>${r.supervisor}</td><td class="text-center">${pdfBtn}</td><td class="text-center">${imgBtn}</td><td><button class="btn btn-sm text-danger" onclick="deleteRecord('${r.id}')"><i class="fas fa-trash"></i></button></td></tr>`);
+      tbody.append(`<tr><td class="fw-bold">${r.dateFormatted}</td><td>${r.supervisor}</td><td class="text-center">${pdfBtn}</td><td class="text-center">${imgBtn}</td><td class="text-end"><button class="btn btn-sm text-danger" onclick="deleteRecord('${r.id}')"><i class="fas fa-trash"></i></button></td></tr>`);
     });
-    if(!$.fn.DataTable.isDataTable('#dataTable') && allData.length > 0) $('#dataTable').DataTable({"order":[[0,"desc"]], "responsive": true});
+    if(!$.fn.DataTable.isDataTable('#dataTable') && allData.length > 0) $('#dataTable').DataTable({"order":[[0,"desc"]]});
   }
 
   function formatThai(monthVal) {
-    if(!monthVal) return "ไม่ระบุเดือน";
+    if(!monthVal || monthVal == "undefined") return "ไม่ระบุเดือน";
     const months = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
     const parts = monthVal.split('-');
     return `เดือน${months[parseInt(parts[1])-1]} ${parseInt(parts[0])+543}`;
@@ -205,12 +234,23 @@
     let container = $('#eventLinkContainer').empty();
     allEvents.filter(ev => ev.dept === currentDept).forEach(ev => {
       container.append(`
-        <div class="col-6 col-md-4 col-lg-3 event-btn-wrapper position-relative">
-          <button onclick="deleteEvent('${ev.id}')" class="btn-sm btn btn-danger position-absolute" style="top:-5px; right:-5px; border-radius:50%; z-index:5"><i class="fas fa-times"></i></button>
-          <a href="${ev.url}" target="_blank" class="event-link-card shadow-sm"><i class="fas fa-file-invoice mb-2 fs-2 text-primary"></i><div class="fw-bold text-dark small text-center">${formatThai(ev.monthVal)}</div></a>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="position-relative">
+            <a href="${ev.url}" target="_blank" class="event-link-card shadow-sm"><i class="fas fa-file-invoice mb-2 fs-2 text-primary"></i><div class="fw-bold text-dark small">${formatThai(ev.monthVal)}</div></a>
+            <button onclick="deleteEvent('${ev.id}')" class="btn btn-sm btn-danger position-absolute" style="top:-5px; right:-5px; border-radius:50%"><i class="fas fa-times"></i></button>
+          </div>
         </div>
       `);
     });
+  }
+
+  async function handleFormSubmit(e) {
+    e.preventDefault();
+    $('#loadingOverlay').show();
+    let fd = {}; new FormData(document.getElementById('mainForm')).forEach((v, k) => fd[k] = v); 
+    await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'processForm', formObject: fd }) });
+    Swal.fire({icon: 'success', title: 'บันทึกสำเร็จ', timer: 2000});
+    init(); showDashboard();
   }
 
   async function saveEvent(e) {
@@ -223,11 +263,11 @@
 
   function populateDropdowns(o) {
     const fill = (id, list) => { let s = document.getElementById(id); if(s) { $(s).empty(); list.forEach(v => $(s).append(new Option(v,v))); } };
-    fill('supList', o.supervisors);
+    fill('supList', o.supervisors); fill('docList1', o.doctors);
   }
 
-  async function deleteRecord(id) { if(confirm('ลบ?')){ await fetch(API_URL, {method:'POST', body:JSON.stringify({action:'deleteRecord', id:id})}); init(); } }
-  async function deleteEvent(id) { if(confirm('ลบ?')){ await fetch(API_URL, {method:'POST', body:JSON.stringify({action:'deleteEvent', id:id})}); loadEvents(); } }
+  async function deleteRecord(id) { if(confirm('ลบประวัติ?')){ await fetch(API_URL, {method:'POST', body:JSON.stringify({action:'deleteRecord', id:id})}); init(); } }
+  async function deleteEvent(id) { if(confirm('ลบปุ่ม?')){ await fetch(API_URL, {method:'POST', body:JSON.stringify({action:'deleteEvent', id:id})}); loadEvents(); } }
 </script>
 </body>
 </html>
