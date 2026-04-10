@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>KSH SUPERVISOR SYSTEM</title>
-  
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%231e3c72' d='M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm95.8 32.6L272 480l-32-136 32-56h-96l32 56-32 136-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8z'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,14 +19,12 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <style>
-    :root { --primary-color: #1e3c72; --secondary-color: #2a5298; --accent-color: #6f42c1; --bg-light: #f4f6f9; }
+    :root { --primary-color: #1e3c72; --accent-color: #6f42c1; --bg-light: #f4f6f9; }
     body { font-family: 'Sarabun', sans-serif; background-color: var(--bg-light); color: #333; padding-bottom: 85px; }
-    .app-header { background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color: white; padding: 30px 15px 45px 15px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; margin-bottom: -20px; text-align: center; }
+    .app-header { background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color: white; padding: 25px 15px 40px 15px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; margin-bottom: -20px; text-align: center; }
     .container-main { max-width: 1100px; margin: 0 auto; padding: 0 10px; position: relative; z-index: 10; }
-    
-    /* Navigation */
     .nav-pills { background: white; border-radius: 15px; padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
-    .nav-link { color: #555; font-weight: 600; border-radius: 12px; padding: 12px; border: none; width: 100%; transition: 0.3s; cursor: pointer; }
+    .nav-link { color: #555; font-weight: 600; border-radius: 12px; padding: 12px; border: none; transition: 0.3s; cursor: pointer; }
     .nav-link.active { background: var(--primary-color) !important; color: white !important; }
     
     @media (max-width: 767px) {
@@ -41,19 +38,18 @@
     @media (min-width: 768px) { .home-quick-menu { display: none !important; } }
     
     .quick-menu-btn { background: white; border-radius: 15px; padding: 15px 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; width: 100%; color: #555; font-weight: 600; border: none; }
-    .dash-card { border-radius: 15px; padding: 15px; color: white; display: flex; flex-direction: column; justify-content: center; min-height: 100px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .dash-card { border-radius: 15px; padding: 15px; color: white; display: flex; flex-direction: column; justify-content: center; min-height: 100px; margin-bottom: 15px; }
     .bg-blue-light { background: #f0f4f8; color: #1e3c72; border: 1px solid #d9e2ec; }
     .bg-orange { background: linear-gradient(135deg, #ff9966, #ff5e62); }
     .bg-green { background: linear-gradient(135deg, #11998e, #38ef7d); }
     .bg-purple { background: linear-gradient(135deg, #7F00FF, #E100FF); }
 
     .custom-card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); background: white; margin-bottom: 20px; overflow: hidden; }
-    .card-title-bar { background: #fff; padding: 12px 18px; font-weight: 600; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; color: var(--primary-color); }
+    .card-title-bar { background: #fff; padding: 12px 18px; font-weight: 600; border-bottom: 1px solid #f0f0f0; color: var(--primary-color); display: flex; align-items: center; }
     .card-body-custom { padding: 15px; }
-    .form-label { font-weight: 600; font-size: 0.85rem; color: #555; margin-bottom: 6px; }
-    .form-control, .form-select { border-radius: 10px; border: 1px solid #ddd; padding: 10px 12px; font-size: 16px; background-color: #fafafa; }
-    .signature-wrapper { border: 2px dashed #ced4da; border-radius: 10px; background-color: #fff; position: relative; overflow: hidden; }
-    #signaturePad { width: 100%; height: 200px; touch-action: none; cursor: crosshair; }
+    .form-label { font-weight: 600; font-size: 0.85rem; color: #555; }
+    .form-control { border-radius: 8px; }
+    .signature-wrapper { border: 2px dashed #ddd; border-radius: 10px; position: relative; }
     #loadingOverlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.9); z-index:9999; flex-direction:column; justify-content:center; align-items:center; }
     
     .event-link-card { display: flex; flex-direction: column; align-items: center; padding: 20px; background: white; border: 2.2px solid #eef2ff; border-radius: 18px; text-decoration: none !important; transition: all 0.3s; }
@@ -68,10 +64,10 @@
 </div>
 
 <div class="app-header print-hide">
-  <h2 class="mb-2"><i class="fas fa-user-shield"></i> KSH SUPERVISOR SYSTEM</h2>
+  <h2 class="mb-1"><i class="fas fa-user-shield"></i> KSH SUPERVISOR SYSTEM</h2>
   <p class="mb-2 opacity-75 small">ระบบบันทึกและรายงานประจำเวรพยาบาลตรวจการนอกเวลา</p>
-  <button class="btn btn-sm btn-outline-light rounded-pill" onclick="window.open('https://docs.google.com/spreadsheets/d/1O5r_mH2z17X-zXW_u-gR7mI0iN9r7C0-3W8O_7N-mS8/edit', '_blank')">
-    <i class="fas fa-database me-1"></i> Google Sheet Database
+  <button class="btn btn-sm btn-light rounded-pill px-3 shadow-sm" onclick="window.open('https://docs.google.com/spreadsheets/d/1O5r_mH2z17X-zXW_u-gR7mI0iN9r7C0-3W8O_7N-mS8/edit', '_blank')">
+    <i class="fas fa-database me-1"></i> Google Sheet
   </button>
 </div>
 
@@ -93,11 +89,11 @@
     </div>
     <div class="row g-3 mb-4">
       <div class="col-6 col-md-3"><div class="dash-card bg-blue-light"><small>วันที่</small><div id="dash_date" class="fw-bold fs-6">-</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-orange"><small>Refer (ล่าสุด)</small><div id="dash_refer" class="fw-bold fs-2">0</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-green"><small>IPD (ล่าสุด)</small><div id="dash_ipd" class="fw-bold fs-2">0</div></div></div>
-      <div class="col-6 col-md-3"><div class="dash-card bg-purple"><small>ER (ล่าสุด)</small><div id="dash_er" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-orange"><small>Refer รวม</small><div id="dash_refer" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-green"><small>IPD รวม</small><div id="dash_ipd" class="fw-bold fs-2">0</div></div></div>
+      <div class="col-6 col-md-3"><div class="dash-card bg-purple"><small>ER รวม</small><div id="dash_er" class="fw-bold fs-2">0</div></div></div>
     </div>
-    <div class="custom-card p-3"><canvas id="mainDashboardChart" style="max-height: 300px;"></canvas></div>
+    <div class="custom-card p-3 shadow-sm"><canvas id="mainDashboardChart" style="max-height: 300px;"></canvas></div>
   </div>
 
   <div id="formSection" style="display:none;">
@@ -105,10 +101,10 @@
       <div class="custom-card"><div class="card-title-bar"><i class="fas fa-user-clock me-2"></i>ข้อมูลทั่วไป</div><div class="card-body-custom">
         <div class="row g-3">
           <div class="col-md-4"><label class="form-label">วันที่</label><input type="date" class="form-control" name="ReportDate" required></div>
-          <div class="col-md-4"><label class="form-label">เวลาเริ่ม</label><input type="time" class="form-control" name="StartTime" required></div>
-          <div class="col-md-4"><label class="form-label">สิ้นสุด</label><input type="time" class="form-control" name="EndTime" required></div>
+          <div class="col-6 col-md-4"><label class="form-label">เวลาเริ่ม</label><input type="time" class="form-control" name="StartTime" required></div>
+          <div class="col-6 col-md-4"><label class="form-label">สิ้นสุด</label><input type="time" class="form-control" name="EndTime" required></div>
           <div class="col-md-6"><label class="form-label">ผู้ตรวจการ</label><select class="form-select select2-input" name="SupervisorName" id="supList"></select></div>
-          <div class="col-md-6"><label class="form-label">แพทย์เวร ER</label><select class="form-select select2-input" name="DoctorER" id="docList1"></select></div>
+          <div class="col-md-6"><label class="form-label">ตำแหน่ง</label><input type="text" class="form-control" name="Position" value="พยาบาลวิชาชีพ"></div>
         </div>
       </div></div>
       <div class="d-grid gap-2 mb-5"><button type="submit" class="btn btn-primary py-3 fw-bold fs-5 rounded-3 shadow-sm"><i class="fas fa-save me-2"></i>บันทึกข้อมูลรายงาน</button></div>
@@ -119,7 +115,7 @@
     <div class="custom-card p-3">
       <div class="table-responsive">
         <table id="dataTable" class="table table-hover w-100">
-          <thead><tr><th>วันที่</th><th>ผู้ตรวจการ</th><th class="text-center">PDF</th><th class="text-center">รูป</th><th class="text-end">ลบ</th></tr></thead>
+          <thead><tr><th>วันที่</th><th>ผู้ตรวจการ</th><th class="text-center">PDF</th><th class="text-center">รูป</th><th>จัดการ</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
@@ -130,28 +126,20 @@
     <div class="custom-card p-4 mb-4"><form onsubmit="saveEvent(event)" class="row g-3 align-items-end">
       <div class="col-md-3"><label class="form-label small fw-bold">แผนก</label><select class="form-select" id="evDept"><option value="ER">ER</option><option value="LR">LR</option><option value="IPDหญิง">IPD หญิง</option><option value="IPDชาย">IPD ชาย</option></select></div>
       <div class="col-md-3"><label class="form-label small fw-bold">เดือน/ปี</label><input type="month" class="form-control" id="evMonth" required></div>
-      <div class="col-md-4"><label class="form-label small fw-bold">ลิงก์ URL</label><input type="url" class="form-control" id="evUrl" placeholder="https://..." required></div>
+      <div class="col-md-4"><label class="form-label small fw-bold">URL ลิงก์</label><input type="url" class="form-control" id="evUrl" placeholder="https://..." required></div>
       <div class="col-md-2"><button type="submit" class="btn btn-danger w-100 fw-bold">บันทึก</button></div>
     </form></div>
     <div id="eventLinkContainer" class="row g-3"></div>
   </div>
 
   <div id="handoutSection" style="display:none;">
-    <div class="ho-header">
-      <h2 class="text-white mb-0 fw-bold"><i class="fas fa-heartbeat me-2"></i>คู่มือพยาบาลตรวจการ</h2>
-      <button onclick="window.print()" class="btn btn-light rounded-circle shadow-sm"><i class="fas fa-print"></i></button>
-    </div>
-    <div class="row g-3">
-      <div class="col-md-4"><div class="custom-card p-4 h-100 theme-blue"><h5>การบริหารอัตรากำลัง</h5><p class="small text-muted">ประเมินภาระงานและจัดการคนให้เหมาะสม</p></div></div>
-      <div class="col-md-4"><div class="custom-card p-4 h-100 theme-orange"><h5>ฉุกเฉินและอุบัติภัยหมู่</h5><p class="small text-muted">ขั้นตอน START Triage และ MCI</p></div></div>
-      <div class="col-md-4"><div class="custom-card p-4 h-100 theme-green"><h5>คุณภาพและความปลอดภัย</h5><p class="small text-muted">HA & 2P Safety Goals</p></div></div>
-    </div>
+    <div class="text-center py-5 text-muted"><i class="fas fa-book-open fs-1 mb-3"></i><br>คู่มือการใช้งานระบบพยาบาลตรวจการ</div>
   </div>
 
 </div>
 
 <script>
-  // ⚠️ ลิงก์ API ตัวล่าสุดของคุณ
+  // 🔗 ลิงก์ API ตัวล่าสุดของคุณ
   const API_URL = "https://script.google.com/macros/s/AKfycbxpWYvefH9QYrJc5CADWVbbGsShV-JLFdmnLVOYRejGAx2NQfbAL4HBrmemV98q_zbV/exec"; 
 
   let allData = [];
@@ -171,13 +159,10 @@
         fetch(API_URL + "?action=getEvents").then(r => r.json()),
         fetch(API_URL + "?action=getDropdownOptions").then(r => r.json())
       ]);
-      allData = resData;
-      allEvents = resEvent;
+      allData = resData; allEvents = resEvent;
       populateDropdowns(resDrop);
-      updateDashboard();
-      renderTable();
-      renderEvents();
-    } catch(e) { console.error(e); }
+      updateDashboard(); renderTable(); renderEvents();
+    } catch(e) { console.error("Initial Error:", e); }
     $('#loadingOverlay').hide();
   }
 
@@ -220,11 +205,11 @@
       let imgBtn = r.imgUrl ? `<a href="${r.imgUrl}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-image"></i></a>` : '-';
       tbody.append(`<tr><td class="fw-bold">${r.dateFormatted}</td><td>${r.supervisor}</td><td class="text-center">${pdfBtn}</td><td class="text-center">${imgBtn}</td><td class="text-end"><button class="btn btn-sm text-danger" onclick="deleteRecord('${r.id}')"><i class="fas fa-trash"></i></button></td></tr>`);
     });
-    if(!$.fn.DataTable.isDataTable('#dataTable') && allData.length > 0) $('#dataTable').DataTable({"order":[[0,"desc"]]});
+    if(!$.fn.DataTable.isDataTable('#dataTable') && allData.length > 0) $('#dataTable').DataTable({"order":[[0,"desc"]], "responsive": true});
   }
 
   function formatThai(monthVal) {
-    if(!monthVal || monthVal == "undefined") return "ไม่ระบุเดือน";
+    if(!monthVal || monthVal === "undefined") return "ไม่ระบุเดือน";
     const months = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
     const parts = monthVal.split('-');
     return `เดือน${months[parseInt(parts[1])-1]} ${parseInt(parts[0])+543}`;
@@ -236,7 +221,7 @@
       container.append(`
         <div class="col-6 col-md-4 col-lg-3">
           <div class="position-relative">
-            <a href="${ev.url}" target="_blank" class="event-link-card shadow-sm"><i class="fas fa-file-invoice mb-2 fs-2 text-primary"></i><div class="fw-bold text-dark small">${formatThai(ev.monthVal)}</div></a>
+            <a href="${ev.url}" target="_blank" class="event-link-card shadow-sm"><i class="fas fa-file-invoice mb-2 fs-2 text-primary"></i><div class="fw-bold text-dark small center">${formatThai(ev.monthVal)}</div></a>
             <button onclick="deleteEvent('${ev.id}')" class="btn btn-sm btn-danger position-absolute" style="top:-5px; right:-5px; border-radius:50%"><i class="fas fa-times"></i></button>
           </div>
         </div>
@@ -261,11 +246,8 @@
     $('#evUrl').val(''); await loadEvents(); $('#loadingOverlay').hide();
   }
 
-  function populateDropdowns(o) {
-    const fill = (id, list) => { let s = document.getElementById(id); if(s) { $(s).empty(); list.forEach(v => $(s).append(new Option(v,v))); } };
-    fill('supList', o.supervisors); fill('docList1', o.doctors);
-  }
-
+  function switchEventTab(dept, btn) { currentDept = dept; $('#eventTabs .nav-link').removeClass('active'); $(btn).addClass('active'); renderEvents(); }
+  function populateDropdowns(o) { const fill = (id, list) => { let s = document.getElementById(id); if(s) { $(s).empty(); list.forEach(v => $(s).append(new Option(v,v))); } }; fill('supList', o.supervisors); }
   async function deleteRecord(id) { if(confirm('ลบประวัติ?')){ await fetch(API_URL, {method:'POST', body:JSON.stringify({action:'deleteRecord', id:id})}); init(); } }
   async function deleteEvent(id) { if(confirm('ลบปุ่ม?')){ await fetch(API_URL, {method:'POST', body:JSON.stringify({action:'deleteEvent', id:id})}); loadEvents(); } }
 </script>
